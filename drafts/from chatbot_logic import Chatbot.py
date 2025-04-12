@@ -1,6 +1,7 @@
-from chatbot_logic import Chatbot
-from config import BOT_NAME
+from chatbot_llm import Chatbot
+#from config import BOT_NAME
 
+BOT_NAME = "BasicBot"
 def main():
     print(f"Welcome to {BOT_NAME}!")
     bot = Chatbot()
