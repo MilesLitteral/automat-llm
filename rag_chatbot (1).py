@@ -12,7 +12,9 @@ from pydantic import BaseModel, ConfigDict
 from langchain_core.prompts.base import BasePromptTemplate
 
 from json_loader import load_json_files
-from retrieval_qa import create_retrieval_qa_chain
+from langchain.chains import create_retrieval_chain
+
+#from retrieval_qa import create_retrieval_qa_chain
 
 class MyModel(BaseModel):
     prompt: BasePromptTemplate
@@ -115,7 +117,7 @@ rude_keywords = ["stupid", "idiot", "shut up", "useless", "dumb"]
 
 # Step 4: Create a RetrievalQA chain with the fused personality
 try:
-    rag_chain = create_retrieval_qa_chain(llm, vector_store, tars_prompt, char_name)
+    rag_chain = create_retrieval_chain(llm, vector_store, tars_prompt, char_name)
     print("RetrievalQA chain created.")
 except Exception as e:
     print(f"Error creating the RetrievalQA chain: {e}")
