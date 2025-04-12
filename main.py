@@ -1,6 +1,6 @@
 import os
 import json
-from scripts.chatbot import Chatbot
+from chatbot_llm import Chatbot
 
 # Path to the memories folder
 MEMORIES_FOLDER = "memories"
