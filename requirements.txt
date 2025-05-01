@@ -1,0 +1,6 @@
+langchain_huggingface
+langchain_community
+langchain
+transformers
+pydantic
+langchain_core

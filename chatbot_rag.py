@@ -11,7 +11,27 @@ from pydantic import BaseModel, ConfigDict
 from langchain_core.prompts.base import BasePromptTemplate
 from langchain.chains import create_retrieval_chain
 from langchain.docstore.document import Document
+
+import weaviate
+from weaviate.classes.init import Auth
+from weaviate.classes.config import Configure
+
 #from retrieval_qa import create_retrieval_qa_chain
+# Best practice: store your credentials in environment variables
+weaviate_url = weaviate_url     = "ishkbitntd7ll5xcxf8gw.c0.us-east1.gcp.weaviate.cloud" #os.environ["WEAVIATE_URL"]
+weaviate_api_key = "a5QfMY4qjkZyFicQBVqbi5GPCS6oUkTByqwE" #os.environ["WEAVIATE_API_KEY"]
+
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=weaviate_url,                                    # Replace with your Weaviate Cloud URL
+    auth_credentials=Auth.api_key(weaviate_api_key),             # Replace with your Weaviate Cloud key
+)
+
+questions = client.collections.create(
+    name="Introduction",
+    vectorizer_config=Configure.Vectorizer.text2vec_weaviate(), # Configure the Weaviate Embeddings integration
+    generative_config=Configure.Generative.cohere()             # Configure the Cohere generative AI integration
+)
+
 
 def load_json_files(directory):
     """Load and validate JSON files from a directory."""
@@ -24,16 +44,72 @@ def load_json_files(directory):
                 f.seek(0)
                 if first_char == '[':
                     data = json.load(f)
-                    documents.extend([Document(page_content=entry['text']) for entry in data if 'text' in entry])
+                    documents.extend([Document(page=entry['text']) for entry in data if 'text' in entry])
                 else:
                     for line in f:
                         entry = json.loads(line.strip())
                         if 'text' in entry:
-                            documents.append(Document(page_content=entry['text']))
+                            documents.append(Document(page=entry['text']))
         except Exception as e:
             print(f"Error loading {json_file}: {e}")
     return documents
 
+def load_json_file(file_path):
+    documents = []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        first_char = f.read(1)
+        f.seek(0)
+        if first_char == '[':
+            data = json.load(f)
+            documents.extend([Document(page_content=entry['text']) for entry in data if 'text' in entry])
+        else:
+            for line in f:
+                entry = json.loads(line.strip())
+                if 'text' in entry:
+                    documents.append(Document(page_content=entry['text']))
+    return documents
+
+from langchain.schema import Document
+import json
+import os
+
+def load_json_as_documents(directory):
+    documents = []
+    for filename in os.listdir(directory):
+        if filename.endswith(".json"):
+            path = os.path.join(directory, filename)
+            with open(path, 'r', encoding='utf-8') as f:
+                try:
+                    raw_content = f.read()
+                    # Optionally, reformat it as pretty-printed JSON
+                    parsed = json.loads(raw_content)
+                    pretty_json = json.dumps(parsed, indent=2)
+                    documents.append(Document(page_content=pretty_json, metadata={"source": filename}))
+                except Exception as e:
+                    print(f"Skipping {filename} due to error: {e}")
+
+    # Extract list of 'Entry' strings if the JSON is a list of dicts
+    entries = [item['Entry'] for item in data if 'Entry' in item]
+
+    with questions.batch.fixed_size(batch_size=200) as batch:
+        for d in entries:
+            print(d)
+            batch.add_object(
+                {
+                    "entry": d
+                }
+            )
+            if batch.number_errors > 10:
+                print("Batch import stopped due to excessive errors.")
+                break
+
+    failed_objects = questions.batch.failed_objects
+    if failed_objects:
+        print(f"Number of failed imports: {len(failed_objects)}")
+        print(f"First failed object: {failed_objects[0]}")
+
+    client.close()  # Free up resources
+    return documents
 
 class MyModel(BaseModel):
     prompt: BasePromptTemplate
@@ -48,23 +124,25 @@ if not os.path.exists(r'./Output'):
     os.mkdir("Output")
 
 # Ensure directories exist
-directory = os.path.abspath(r'C:\Users\EnocEscalona\Documents\Supercell_AI_Dev\Data\Cleaned_JSONs')
+directory = os.path.abspath('/Users/sasori/Downloads/automat-llm-main/Cleaned_JSONs/')
 if not os.path.exists(directory):
-    print(f"Cleaned JSON directory not found at {directory}. Please check the path.")
+    print(f"Cleaned JSON directory not found at {directory}. Creating Cleaned_JSONs folder")
+    os.mkdir(r'/Users/sasori/Downloads/automat-llm-main/Cleaned_JSONs')
+    print("Exception, please load Cleaned_JSON with your json data")
     exit()
 
 # Set up logging to save chatbot interactions
 logging.basicConfig(
-    filename=r'C:\Users\EnocEscalona\Documents\Supercell_AI_Dev\Logs\chatbot_logs.txt', #r'./Logs/chatbot_logs.txt',
+    filename=r'/Users/sasori/Downloads/automat-llm-main/chatbot_logs.txt', #r'./Logs/chatbot_logs.txt',
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
 # Directory containing your cleaned JSON files (on the laptop)
-directory = r'C:\Users\EnocEscalona\Documents\Supercell_AI_Dev\Data\Cleaned_JSONs' #r'./Output'
+directory = r'/Users/sasori/Downloads/automat-llm-main/Cleaned_JSONs' #r'./Output'
 
 # Step 1: Load the cleaned JSON files
-documents = load_json_files(directory)
+documents = load_json_as_documents(directory) #f"{directory}/cleaned_SupercellAMemory0.json")
 
 if not documents:
     print("No documents extracted from JSON files. Please check the file contents.")
@@ -96,7 +174,7 @@ except Exception as e:
     exit()
 
 # Ensure personality file exists
-personality_file = os.path.abspath(r'C:\Users\EnocEscalona\Documents\Supercell_AI_Dev\Personality\src\robot_personality.json')
+personality_file = os.path.abspath(r'/Users/sasori/Downloads/automat-llm-main/robot_personality.json')
 if not os.path.exists(personality_file):
     print(f"Personality file not found at {personality_file}. Please create robot_personality.json.")
     logging.error(f"Personality file not found at {personality_file}.")
@@ -112,7 +190,7 @@ except FileNotFoundError:
     exit(1)
 
 # Ensure user interactions file exists
-user_interactions_file = os.path.abspath(r'C:\Users\EnocEscalona\Documents\Supercell_AI_Dev\Personality\src\user_interactions.json')
+user_interactions_file = os.path.abspath(r'/Users/sasori/Downloads/automat-llm-main/user_interactions.json')
 if not os.path.exists(user_interactions_file):
     user_interactions = {"users": {}}
     with open(user_interactions_file, 'w', encoding='utf-8') as f:
@@ -195,7 +273,7 @@ def generate_response(user_id, user_input):
         logging.info(f"Bot: {response}")
         logging.info("Retrieved Memories:")
         for doc in result['source_documents']:
-            logging.info(f"- {doc.page_content}")
+            logging.info(f"- {doc.page}")
         logging.info("")
         return response
     except Exception as e:

@@ -1,0 +1,20 @@
+2025-04-30 20:38:40,536 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-04-30 20:38:46,723 - INFO - Use pytorch device_name: mps
+2025-04-30 20:39:52,508 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-04-30 20:39:54,045 - INFO - Use pytorch device_name: mps
+2025-04-30 20:40:25,864 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-04-30 20:40:26,462 - INFO - Use pytorch device_name: mps
+2025-04-30 20:42:49,868 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-04-30 20:42:50,635 - INFO - Use pytorch device_name: mps
+2025-04-30 20:43:27,383 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-04-30 20:43:27,931 - INFO - Use pytorch device_name: mps
+2025-04-30 20:44:45,758 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-04-30 20:44:46,689 - INFO - Use pytorch device_name: mps
+2025-04-30 20:50:59,352 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-04-30 20:51:00,203 - INFO - Use pytorch device_name: mps
+2025-04-30 20:51:36,457 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-04-30 20:51:37,086 - INFO - Use pytorch device_name: mps
+2025-04-30 20:51:38,114 - INFO - Loading faiss.
+2025-04-30 20:51:38,915 - INFO - Successfully loaded faiss.
+2025-04-30 20:51:38,920 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 20:51:55,611 - ERROR - Personality file not found at /Users/sasori/Downloads/automat-llm-main/robot_personality.json.
