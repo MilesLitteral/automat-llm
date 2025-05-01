@@ -15,9 +15,12 @@ from langchain.docstore.document import Document
 import weaviate
 from weaviate.classes.init import Auth
 from weaviate.classes.config import Configure
+#from dia.model import Dia
 
-#from retrieval_qa import create_retrieval_qa_chain
+# model = Dia.from_pretrained("nari-labs/Dia-1.6B", compute_dtype="float16")
+# from retrieval_qa import create_retrieval_qa_chain
 # Best practice: store your credentials in environment variables
+
 weaviate_url = weaviate_url     = "ishkbitntd7ll5xcxf8gw.c0.us-east1.gcp.weaviate.cloud" #os.environ["WEAVIATE_URL"]
 weaviate_api_key = "a5QfMY4qjkZyFicQBVqbi5GPCS6oUkTByqwE" #os.environ["WEAVIATE_API_KEY"]
 
@@ -267,7 +270,7 @@ def generate_response(user_id, user_input):
 
     try:
         result = rag_chain({"query": user_input})
-        response = result['result']
+        response = result['result'] #f"[S1] {result['result']}"
         # Log the interaction
         logging.info(f"User: {user_input}")
         logging.info(f"Bot: {response}")
@@ -275,6 +278,11 @@ def generate_response(user_id, user_input):
         for doc in result['source_documents']:
             logging.info(f"- {doc.page}")
         logging.info("")
+        #text = "[S1] Dia is an open weights text to dialogue model. [S2] You get full control over scripts and voices. [S1] Wow. Amazing. (laughs) [S2] Try it now on Git hub or Hugging Face."
+        #output = model.generate(text, use_torch_compile=True, verbose=True)
+
+        #model.save_audio("simple.mp3", output)
+
         return response
     except Exception as e:
         logging.error(f"Error generating response: {e}")
