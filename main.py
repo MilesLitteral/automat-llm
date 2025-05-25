@@ -22,19 +22,22 @@ from weaviate.classes.config import Configure
 # from retrieval_qa import create_retrieval_qa_chain
 # Best practice: store your credentials in environment variables
 
-weaviate_url = weaviate_url     = "ishkbitntd7ll5xcxf8gw.c0.us-east1.gcp.weaviate.cloud" #os.environ["WEAVIATE_URL"]
-weaviate_api_key = "a5QfMY4qjkZyFicQBVqbi5GPCS6oUkTByqwE" #os.environ["WEAVIATE_API_KEY"]
+weaviate_url = weaviate_url     = "enb5w7lzsiggptazuakxug.c0.us-east1.gcp.weaviate.cloud" #os.environ["WEAVIATE_URL"]
+weaviate_api_key = "5aFrft85NhDXkz4GqS2OYJGv5XhlHu6GsOAo" #os.environ["WEAVIATE_API_KEY"]
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=weaviate_url,                                    # Replace with your Weaviate Cloud URL
     auth_credentials=Auth.api_key(weaviate_api_key),             # Replace with your Weaviate Cloud key
 )
 
-questions = client.collections.create(
-    name="Introduction",
-    vectorizer_config=Configure.Vectorizer.text2vec_weaviate(), # Configure the Weaviate Embeddings integration
-    generative_config=Configure.Generative.cohere()             # Configure the Cohere generative AI integration
-)
+if(client.collections.get("Introduction") != None):
+    questions = client.collections.get("Introduction")
+else:
+    questions = client.collections.create(
+        name="Introduction",
+        vectorizer_config=Configure.Vectorizer.text2vec_weaviate(), # Configure the Weaviate Embeddings integration
+        generative_config=Configure.Generative.cohere()             # Configure the Cohere generative AI integration
+    )
 
 
 def load_json_files(directory):
@@ -116,7 +119,7 @@ class MyModel(BaseModel):
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
-
+current_dir = os.getcwd()
 # Creates a single directory
 if not os.path.exists(r'./Logs'):
     os.mkdir("Logs")
@@ -124,22 +127,22 @@ if not os.path.exists(r'./Output'):
     os.mkdir("Output")
 
 # Ensure directories exist
-directory = os.path.abspath(f'{os.getcwd}/Input_JSON/')
+directory = os.path.abspath(f'{current_dir}/Input_JSON/')
 if not os.path.exists(directory):
     print(f"Cleaned JSON directory not found at {directory}. Creating Input_JSON folder")
-    os.mkdir(f'{os.getcwd}/Input_JSON')
+    os.mkdir(f'{current_dir}/Input_JSON')
     print("Exception, please load Cleaned_JSON with your json data")
     exit()
 
 # Set up logging to save chatbot interactions
 logging.basicConfig(
-    filename=f'{os.getcwd}/chatbot_logs.txt', #r'./Logs/chatbot_logs.txt',
+    filename=f'{current_dir}/chatbot_logs.txt', #r'./Logs/chatbot_logs.txt',
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
 # Directory containing your cleaned JSON files (on the laptop)
-directory = f'{os.getcwd}/Input_JSON' #r'./Output'
+directory = f'{current_dir}/Input_JSON' #r'./Output'
 
 # Step 1: Load the cleaned JSON files
 documents = load_json_as_documents(directory) #f"{directory}/cleaned_SupercellAMemory0.json")
@@ -174,7 +177,7 @@ except Exception as e:
     exit()
 
 # Ensure personality file exists
-personality_file = os.path.abspath(r'/Users/sasori/Downloads/automat-llm-main/robot_personality.json')
+personality_file = f"{current_dir}/robot_personality.json"
 if not os.path.exists(personality_file):
     print(f"Personality file not found at {personality_file}. Please create robot_personality.json.")
     logging.error(f"Personality file not found at {personality_file}.")
@@ -190,7 +193,7 @@ except FileNotFoundError:
     exit(1)
 
 # Ensure user interactions file exists
-user_interactions_file = os.path.abspath(r'/Users/sasori/Downloads/automat-llm-main/user_interactions.json')
+user_interactions_file = f"{current_dir}/user_interactions.json"
 if not os.path.exists(user_interactions_file):
     user_interactions = {"users": {}}
     with open(user_interactions_file, 'w', encoding='utf-8') as f:
@@ -214,7 +217,7 @@ rude_keywords = ["stupid", "idiot", "shut up", "useless", "dumb"]
 
 # Step 4: Create a RetrievalQA chain with the fused personality
 try:
-    rag_chain = create_retrieval_chain(llm, vector_store, tars_prompt, char_name)
+    rag_chain = create_retrieval_chain(llm, vector_store.as_retriever())#, tars_prompt, char_name)
     print("RetrievalQA chain created.")
 except Exception as e:
     print(f"Error creating the RetrievalQA chain: {e}")
