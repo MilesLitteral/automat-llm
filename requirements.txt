@@ -1,3 +1,4 @@
+#For Automat-LLM
 langchain_huggingface
 langchain_community
 langchain
@@ -6,5 +7,12 @@ pydantic
 langchain_core
 weaviate-client
 faiss-cpu
+#faiss-gpu
 playsound
 numpy
+
+#For automat-server
+fastapi 
+asyncio
+uvicorn
+uuid
