@@ -224,11 +224,8 @@ try:
         ("human", "{input}\n\nUse this context if helpful:\n{context}")
     ])
 
- #TheBloke/dolphin-2.7-mixtral-8x7b-GGUF "mistralai/Mistral-7B-v0.1"
-         #token="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"
-#HuggingFaceH4/zephyr-7b-beta
     llm = HuggingFacePipeline.from_model_id(
-        model_id="tiiuae/falcon-7b-instruct", #"mistralai/Mistral-7B-Instruct-v0.1", #"distilgpt2",
+        model_id="tiiuae/falcon-7b-instruct", #"mistralai/Mistral-7B-Instruct-v0.1", #"distilgpt2", #TheBloke/dolphin-2.7-mixtral-8x7b-GGUF 
         task="text-generation",
         pipeline_kwargs={"max_length": 100, "num_return_sequences": 1}
     )
