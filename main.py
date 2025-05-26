@@ -3,20 +3,21 @@ import os
 import logging
 from langchain_huggingface import HuggingFaceEmbeddings, HuggingFacePipeline
 from langchain_community.vectorstores import FAISS
-from langchain.docstore.document import Document
-from langchain.prompts import PromptTemplate
-from langchain.schema import Document
+from langchain.docstore.document      import Document
+from langchain.schema  import Document
 
-from transformers import pipeline
-from pydantic import BaseModel, ConfigDict
+from pydantic     import BaseModel, ConfigDict
 from langchain_core.prompts.base import BasePromptTemplate
-from langchain.chains import create_retrieval_chain
+from langchain_core.prompts.chat import ChatPromptTemplate
+from langchain.chains            import create_retrieval_chain
 from langchain.docstore.document import Document
 
 import weaviate
 from weaviate.classes.init import Auth
 from weaviate.classes.config import Configure
+
 #from dia.model import Dia
+#from playsound import playsound
 
 # Best practice: store your credentials in environment variables
 weaviate_url = weaviate_url     = "enb5w7lzsiggptazuakxug.c0.us-east1.gcp.weaviate.cloud" #os.environ["WEAVIATE_URL"]
@@ -37,6 +38,31 @@ else:
         generative_config=Configure.Generative.cohere()             # Configure the Cohere generative AI integration
     )
 
+class MyModel(BaseModel):
+    prompt: BasePromptTemplate
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
+current_dir = os.getcwd()
+# Creates a single directory
+if not os.path.exists(r'./Logs'):
+    os.mkdir("Logs")
+if not os.path.exists(r'./Output'):
+    os.mkdir("Output")
+
+# Ensure directories exist
+directory = os.path.abspath(f'{current_dir}/Input_JSON/')
+if not os.path.exists(directory):
+    print(f"Cleaned JSON directory not found at {directory}. Creating Input_JSON folder")
+    os.mkdir(f'{current_dir}/Input_JSON')
+    print("Exception, please load Cleaned_JSON with your json data")
+    exit()
+
+# Set up logging to save chatbot interactions
+logging.basicConfig(
+    filename=f'{current_dir}/chatbot_logs.txt', #r'./Logs/chatbot_logs.txt',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 def load_json_files(directory):
     """Load and validate JSON files from a directory."""
@@ -112,115 +138,6 @@ def load_json_as_documents(directory):
     client.close()  # Free up resources
     return documents
 
-class MyModel(BaseModel):
-    prompt: BasePromptTemplate
-
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-
-current_dir = os.getcwd()
-# Creates a single directory
-if not os.path.exists(r'./Logs'):
-    os.mkdir("Logs")
-if not os.path.exists(r'./Output'):
-    os.mkdir("Output")
-
-# Ensure directories exist
-directory = os.path.abspath(f'{current_dir}/Input_JSON/')
-if not os.path.exists(directory):
-    print(f"Cleaned JSON directory not found at {directory}. Creating Input_JSON folder")
-    os.mkdir(f'{current_dir}/Input_JSON')
-    print("Exception, please load Cleaned_JSON with your json data")
-    exit()
-
-# Set up logging to save chatbot interactions
-logging.basicConfig(
-    filename=f'{current_dir}/chatbot_logs.txt', #r'./Logs/chatbot_logs.txt',
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-
-# Directory containing your cleaned JSON files (on the laptop)
-directory = f'{current_dir}/Input_JSON' #r'./Output'
-
-# Step 1: Load the cleaned JSON files
-documents = load_json_as_documents(directory) #f"{directory}/cleaned_SupercellAMemory0.json")
-
-if not documents:
-    print("No documents extracted from JSON files. Please check the file contents.")
-    exit()
-
-print(f"Loaded {len(documents)} documents for RAG.")
-
-# Step 2: Create embeddings and index the documents
-try:
-    print("Step 2: Creating embeddings and indexing documents...")
-    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-    vector_store = FAISS.from_documents(documents, embeddings)
-    print("Embeddings and vector store created.")
-except Exception as e:
-    print(f"Error creating embeddings or vector store: {e}")
-    exit()
-
-# Step 3: Set up the language model for generation
-try:
-    print("Step 3: Setting up the language model...")
-    llm = HuggingFacePipeline.from_model_id(
-        model_id="distilgpt2",
-        task="text-generation",
-        pipeline_kwargs={"max_length": 100, "num_return_sequences": 1},
-    )
-    print("Language model set up.")
-except Exception as e:
-    print(f"Error setting up the language model: {e}")
-    exit()
-
-# Ensure personality file exists
-personality_file = f"{current_dir}/robot_personality.json"
-if not os.path.exists(personality_file):
-    print(f"Personality file not found at {personality_file}. Please create robot_personality.json.")
-    logging.error(f"Personality file not found at {personality_file}.")
-    exit(1)
-
-# Load the personality from robot_personality.json
-try:
-    with open(personality_file, 'r', encoding='utf-8') as f:
-        personality_data = json.load(f)
-except FileNotFoundError:
-    print(f"Personality file not found at {personality_file}. Please create robot_personality.json.")
-    logging.error(f"Personality file not found at {personality_file}.")
-    exit(1)
-
-# Ensure user interactions file exists
-user_interactions_file = f"{current_dir}/user_interactions.json"
-if not os.path.exists(user_interactions_file):
-    user_interactions = {"users": {}}
-    with open(user_interactions_file, 'w', encoding='utf-8') as f:
-        json.dump(user_interactions, f, indent=4)
-
-# Load or initialize user interactions
-try:
-    with open(user_interactions_file, 'r', encoding='utf-8') as f:
-        user_interactions = json.load(f)
-except FileNotFoundError:
-    user_interactions = {"users": {}}
-    with open(user_interactions_file, 'w', encoding='utf-8') as f:
-        json.dump(user_interactions, f, indent=4)
-
-# Extract personality details
-char_name = personality_data['char_name']
-tars_prompt = personality_data['char_persona'] + "\n"
-
-# Rudeness detection keywords
-rude_keywords = ["stupid", "idiot", "shut up", "useless", "dumb"]
-
-# Step 4: Create a RetrievalQA chain with the fused personality
-try:
-    rag_chain = create_retrieval_chain(llm, vector_store.as_retriever())#, tars_prompt, char_name)
-    print("RetrievalQA chain created.")
-except Exception as e:
-    print(f"Error creating the RetrievalQA chain: {e}")
-    exit()
-
 # Function to update user interactions
 def update_user_interactions(user_id, is_rude=False, apologized=False):
     if user_id not in user_interactions["users"]:
@@ -265,9 +182,8 @@ def generate_response(user_id, user_input):
     if is_rude:
         update_user_interactions(user_id, is_rude=True)
         return next(item['response'] for item in personality_data['example_dialogue'] if item['user'].lower() == "just do what i say, you stupid robot!")
-
     try:
-        result = rag_chain({"query": user_input})
+        result = rag_chain.invoke({"input": user_input})
         response = result['result'] #f"[S1] {result['result']}"
         # Log the interaction
         logging.info(f"User: {user_input}")
@@ -280,6 +196,82 @@ def generate_response(user_id, user_input):
     except Exception as e:
         logging.error(f"Error generating response: {e}")
         return "I'm sorry, I couldn't process your request."
+    
+# Step 1: Load the cleaned JSON files
+documents = load_json_as_documents(directory) #f"{directory}/cleaned_SupercellAMemory0.json")
+
+if not documents:
+    print("No documents extracted from JSON files. Please check the file contents.")
+    exit()
+
+print(f"Loaded {len(documents)} documents for RAG.")
+
+# Step 2: Create embeddings and index the documents
+try:
+    print("Step 2: Creating embeddings and indexing documents...")
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    vector_store = FAISS.from_documents(documents, embeddings)
+    print("Embeddings and vector store created.")
+except Exception as e:
+    print(f"Error creating embeddings or vector store: {e}")
+    exit()
+
+# Step 3: Set up the language model for generation
+try:
+    print("Step 3: Setting up the language model...")
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", "You are a snarky but helpful assistant."),
+        ("human", "{input}\n\nUse this context if helpful:\n{context}")
+    ])
+
+ #TheBloke/dolphin-2.7-mixtral-8x7b-GGUF "mistralai/Mistral-7B-v0.1"
+         #token="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"
+#HuggingFaceH4/zephyr-7b-beta
+    llm = HuggingFacePipeline.from_model_id(
+        model_id="tiiuae/falcon-7b-instruct", #"mistralai/Mistral-7B-Instruct-v0.1", #"distilgpt2",
+        task="text-generation",
+        pipeline_kwargs={"max_length": 100, "num_return_sequences": 1}
+    )
+
+    llm_chain = prompt | llm  # This is now a Runnable
+    print("Language model set up.")
+except Exception as e:
+    print(f"Error setting up the language model: {e}")
+    exit()
+
+# Load the personality from robot_personality.json
+try:
+    personality_file = f"{current_dir}/robot_personality.json"
+    with open(personality_file, 'r', encoding='utf-8') as f:
+        personality_data = json.load(f)
+except FileNotFoundError:
+    print(f"Personality file not found at {personality_file}. Please create robot_personality.json.")
+    logging.error(f"Personality file not found at {personality_file}.")
+    exit(1)
+
+# Load or initialize user interactions
+try:
+    user_interactions_file = f"{current_dir}/user_interactions.json"
+    with open(user_interactions_file, 'r', encoding='utf-8') as f:
+        user_interactions = json.load(f)
+except FileNotFoundError:
+    user_interactions = {"users": {}}
+    with open(user_interactions_file, 'w', encoding='utf-8') as f:
+        json.dump(user_interactions, f, indent=4)
+
+# Extract personality details
+char_name = personality_data['char_name']
+
+# Rudeness detection keywords
+rude_keywords = ["stupid", "idiot", "shut up", "useless", "dumb"]
+
+# Step 4: Create a RetrievalQA chain with the fused personality
+try:
+    rag_chain = create_retrieval_chain(vector_store.as_retriever(), llm_chain)
+    print("RetrievalQA chain created.")
+except Exception as e:
+    print(f"Error creating the RetrievalQA chain: {e}")
+    exit()
 
 # Step 6: Chatbot loop (for standalone testing)
 if __name__ == "__main__":
@@ -294,6 +286,7 @@ if __name__ == "__main__":
             response = generate_response(user_id, user_input)
             #output = model.generate(f"[S1] {response}", use_torch_compile=True, verbose=True)
             #model.save_audio(f"response.mp3", output)
+            #playsound("response.mp3")
             print(f"{char_name}: {response}")
         except Exception as e:
             print(f"Error in chatbot loop: {e}")

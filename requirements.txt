@@ -6,3 +6,5 @@ pydantic
 langchain_core
 weaviate-client
 faiss-cpu
+playsound
+numpy
