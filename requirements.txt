@@ -6,3 +6,4 @@ pydantic
 langchain_core
 weaviate-client
 faiss-cpu
+#faiss-gpu
