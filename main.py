@@ -18,12 +18,10 @@ from weaviate.classes.init import Auth
 from weaviate.classes.config import Configure
 #from dia.model import Dia
 
-# model = Dia.from_pretrained("nari-labs/Dia-1.6B", compute_dtype="float16")
-# from retrieval_qa import create_retrieval_qa_chain
 # Best practice: store your credentials in environment variables
-
 weaviate_url = weaviate_url     = "enb5w7lzsiggptazuakxug.c0.us-east1.gcp.weaviate.cloud" #os.environ["WEAVIATE_URL"]
 weaviate_api_key = "5aFrft85NhDXkz4GqS2OYJGv5XhlHu6GsOAo" #os.environ["WEAVIATE_API_KEY"]
+#model = Dia.from_pretrained("nari-labs/Dia-1.6B", compute_dtype="float16")
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=weaviate_url,                                    # Replace with your Weaviate Cloud URL
@@ -278,11 +276,6 @@ def generate_response(user_id, user_input):
         for doc in result['source_documents']:
             logging.info(f"- {doc.page}")
         logging.info("")
-        #text = "[S1] Dia is an open weights text to dialogue model. [S2] You get full control over scripts and voices. [S1] Wow. Amazing. (laughs) [S2] Try it now on Git hub or Hugging Face."
-        #output = model.generate(text, use_torch_compile=True, verbose=True)
-
-        #model.save_audio("simple.mp3", output)
-
         return response
     except Exception as e:
         logging.error(f"Error generating response: {e}")
@@ -299,6 +292,8 @@ if __name__ == "__main__":
                 print("Goodbye!")
                 break
             response = generate_response(user_id, user_input)
+            #output = model.generate(f"[S1] {response}", use_torch_compile=True, verbose=True)
+            #model.save_audio(f"response.mp3", output)
             print(f"{char_name}: {response}")
         except Exception as e:
             print(f"Error in chatbot loop: {e}")
