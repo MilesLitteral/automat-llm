@@ -41,15 +41,6 @@ client = weaviate.connect_to_weaviate_cloud(
     auth_credentials=Auth.api_key(weaviate_api_key),             # Replace with your Weaviate Cloud key
 )
 
-if(client.collections.get("Introduction") != None):
-    questions = client.collections.get("Introduction")
-else:
-    questions = client.collections.create(
-        name="Introduction",
-        vectorizer_config=Configure.Vectorizer.text2vec_weaviate(), # Configure the Weaviate Embeddings integration
-        generative_config=Configure.Generative.cohere()             # Configure the Cohere generative AI integration
-    )
-
 personality_data  = load_personality_file()
 user_interactions = init_interactions()
 documents         = load_json_as_documents(directory)
