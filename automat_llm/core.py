@@ -111,6 +111,118 @@ def create_rag_chain(client, user_id, documents):
         print(f"Error creating the RetrievalQA chain: {e}")
         exit()
 
+def create_rag_chain_falcon(client, user_id, documents):
+    try:
+        print("Step 1: Creating embeddings and indexing documents...")
+        embeddings   = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        vector_store = FAISS.from_documents(documents, embeddings)
+        print("Embeddings and vector store created.")
+        Embeddings_W = client.collections.get("JeopardyQuestion")
+        uuid = Embeddings_W.data.insert(
+            properties={
+                "user_id":    user_id,
+                "embeddings": embeddings,
+            },
+            vector=vector_store[0]
+        )
+
+        print(f"Embeddings uploaded with ID: {uuid}")  # the return value is the object's UUID
+        print("Step 2: Setting up the language model...")
+        prompt = ChatPromptTemplate.from_messages([
+            ("system", "You are a snarky but helpful assistant."),
+            ("human", "{input}\n\nUse this context if helpful:\n{context}")
+        ])
+
+        llm = HuggingFacePipeline.from_model_id(
+            model_id="tiiuae/falcon-7b-instruct",
+            task="text-generation",
+            pipeline_kwargs={"max_length": 100, "num_return_sequences": 1}
+        )
+
+        llm_chain = prompt | llm  # This is now a Runnable
+        print("Language model set up.")
+        rag_chain = create_retrieval_chain(vector_store.as_retriever(), llm_chain)
+        print("RetrievalQA chain created.")
+        return rag_chain
+    except Exception as e:
+        print(f"Error creating the RetrievalQA chain: {e}")
+        exit()
+
+def create_rag_chain_falcon_mistral(client, user_id, documents):
+    try:
+        print("Step 1: Creating embeddings and indexing documents...")
+        embeddings   = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        vector_store = FAISS.from_documents(documents, embeddings)
+        print("Embeddings and vector store created.")
+        Embeddings_W = client.collections.get("JeopardyQuestion")
+        uuid = Embeddings_W.data.insert(
+            properties={
+                "user_id":    user_id,
+                "embeddings": embeddings,
+            },
+            vector=vector_store[0]
+        )
+
+        print(f"Embeddings uploaded with ID: {uuid}")  # the return value is the object's UUID
+        print("Step 2: Setting up the language model...")
+        prompt = ChatPromptTemplate.from_messages([
+            ("system", "You are a snarky but helpful assistant."),
+            ("human", "{input}\n\nUse this context if helpful:\n{context}")
+        ])
+
+        llm = HuggingFacePipeline.from_model_id(
+            model_id="mistralai/Mistral-7B-v0.1",
+            task="text-generation",
+            pipeline_kwargs={"max_length": 100, "num_return_sequences": 1}
+        )
+
+        llm_chain = prompt | llm  # This is now a Runnable
+        print("Language model set up.")
+        rag_chain = create_retrieval_chain(vector_store.as_retriever(), llm_chain)
+        print("RetrievalQA chain created.")
+        return rag_chain
+    except Exception as e:
+        print(f"Error creating the RetrievalQA chain: {e}")
+        exit()
+
+
+def create_rag_chain_mixtral(client, user_id, documents):
+    try:
+        print("Step 1: Creating embeddings and indexing documents...")
+        embeddings   = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        vector_store = FAISS.from_documents(documents, embeddings)
+        print("Embeddings and vector store created.")
+        Embeddings_W = client.collections.get("JeopardyQuestion")
+        uuid = Embeddings_W.data.insert(
+            properties={
+                "user_id":    user_id,
+                "embeddings": embeddings,
+            },
+            vector=vector_store[0]
+        )
+
+        print(f"Embeddings uploaded with ID: {uuid}")  # the return value is the object's UUID
+        print("Step 2: Setting up the language model...")
+        prompt = ChatPromptTemplate.from_messages([
+            ("system", "You are a snarky but helpful assistant."),
+            ("human", "{input}\n\nUse this context if helpful:\n{context}")
+        ])
+
+        llm = HuggingFacePipeline.from_model_id(
+            model_id="TheBloke/dolphin-2.7-mixtral-8x7b-GGUF",
+            task="text-generation",
+            pipeline_kwargs={"max_length": 100, "num_return_sequences": 1}
+        )
+
+        llm_chain = prompt | llm  # This is now a Runnable
+        print("Language model set up.")
+        rag_chain = create_retrieval_chain(vector_store.as_retriever(), llm_chain)
+        print("RetrievalQA chain created.")
+        return rag_chain
+    except Exception as e:
+        print(f"Error creating the RetrievalQA chain: {e}")
+        exit()
+
 # Function to update user interactions
 def update_user_interactions(user_id, user_interactions_file, user_interactions, is_rude=False, apologized=False):
     if user_id not in user_interactions["users"]:
