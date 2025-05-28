@@ -75,12 +75,21 @@ def load_personality_file():
 
 
 def create_rag_chain(client, user_id, documents):
+    from   weaviate.classes.config import Configure
     try:
         print("Step 1: Creating embeddings and indexing documents...")
-        embeddings   = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        if(client.collections.get("Embeddings") != None):
+            embeddings   = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2") # TBA: #= client.collections.get("Embeddings")
+            Embeddings_W = client.collections.get("Embeddings")
+        else:
+            embeddings   = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+            Embeddings_W = client.collections.create(
+                name="Embeddings",
+                vectorizer_config=Configure.Vectorizer.text2vec_weaviate(), # Configure the Weaviate Embeddings integration
+                generative_config=Configure.Generative.cohere()             # Configure the Cohere generative AI integration
+            )
         vector_store = FAISS.from_documents(documents, embeddings)
         print("Embeddings and vector store created.")
-        Embeddings_W = client.collections.get("JeopardyQuestion")
         uuid = Embeddings_W.data.insert(
             properties={
                 "user_id":    user_id,
@@ -93,7 +102,7 @@ def create_rag_chain(client, user_id, documents):
         print("Step 2: Setting up the language model...")
         prompt = ChatPromptTemplate.from_messages([
             ("system", "You are a snarky but helpful assistant."),
-            ("human", "{input}\n\nUse this context if helpful:\n{context}")
+            ("human",  "{input}\n\nUse this context if helpful:\n{context}")
         ])
 
         llm = HuggingFacePipeline.from_model_id(

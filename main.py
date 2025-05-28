@@ -50,15 +50,6 @@ else:
         generative_config=Configure.Generative.cohere()             # Configure the Cohere generative AI integration
     )
 
-if(client.collections.get("Embeddings") != None):
-    questions = client.collections.get("Embeddings")
-else:
-    questions = client.collections.create(
-        name="Embeddings",
-        vectorizer_config=Configure.Vectorizer.text2vec_weaviate(), # Configure the Weaviate Embeddings integration
-        generative_config=Configure.Generative.cohere()             # Configure the Cohere generative AI integration
-    )
-
 personality_data  = load_personality_file()
 user_interactions = init_interactions()
 documents         = load_json_as_documents(directory)
