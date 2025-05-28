@@ -1,28 +1,20 @@
-import json
 import os
 import logging
-from langchain_huggingface import HuggingFaceEmbeddings, HuggingFacePipeline
-from langchain_community.vectorstores import FAISS
-from langchain.docstore.document      import Document
-from langchain.schema  import Document
-
-from pydantic     import BaseModel, ConfigDict
-from langchain_core.prompts.base import BasePromptTemplate
-from langchain_core.prompts.chat import ChatPromptTemplate
-from langchain.chains            import create_retrieval_chain
-from langchain.docstore.document import Document
-
+import argparse
+from   automat_core import load_json_as_documents, load_personality_file, init_interactions, generate_response, create_rag_chain
+from automat_config import load_config, save_config, update_config
 import weaviate
 from weaviate.classes.init import Auth
 from weaviate.classes.config import Configure
 
-#from dia.model import Dia
-#from playsound import playsound
+from dia.model import Dia
+from playsound import playsound
 
 # Best practice: store your credentials in environment variables
 weaviate_url = weaviate_url     = "enb5w7lzsiggptazuakxug.c0.us-east1.gcp.weaviate.cloud" #os.environ["WEAVIATE_URL"]
 weaviate_api_key = "5aFrft85NhDXkz4GqS2OYJGv5XhlHu6GsOAo" #os.environ["WEAVIATE_API_KEY"]
-#model = Dia.from_pretrained("nari-labs/Dia-1.6B", compute_dtype="float16")
+user_id  = "default_user"  # Automat-User-Id, In the future this will be in a config the user can set.
+                           # It is made for a single-user system; can be modified for multi-user
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=weaviate_url,                                    # Replace with your Weaviate Cloud URL
@@ -38,9 +30,14 @@ else:
         generative_config=Configure.Generative.cohere()             # Configure the Cohere generative AI integration
     )
 
-class MyModel(BaseModel):
-    prompt: BasePromptTemplate
-    model_config = ConfigDict(arbitrary_types_allowed=True)
+if(client.collections.get("Embeddings") != None):
+    questions = client.collections.get("Embeddings")
+else:
+    questions = client.collections.create(
+        name="Embeddings",
+        vectorizer_config=Configure.Vectorizer.text2vec_weaviate(), # Configure the Weaviate Embeddings integration
+        generative_config=Configure.Generative.cohere()             # Configure the Cohere generative AI integration
+    )
 
 current_dir = os.getcwd()
 # Creates a single directory
@@ -64,215 +61,54 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-def load_json_files(directory):
-    """Load and validate JSON files from a directory."""
-    json_files = [os.path.join(directory, f) for f in os.listdir(directory) if f.endswith('.json')]
-    documents = []
-    for json_file in json_files:
-        try:
-            with open(json_file, 'r', encoding='utf-8') as f:
-                first_char = f.read(1)
-                f.seek(0)
-                if first_char == '[':
-                    data = json.load(f)
-                    documents.extend([Document(page=entry['text']) for entry in data if 'text' in entry])
-                else:
-                    for line in f:
-                        entry = json.loads(line.strip())
-                        if 'text' in entry:
-                            documents.append(Document(page=entry['text']))
-        except Exception as e:
-            print(f"Error loading {json_file}: {e}")
-    return documents
-
-def load_json_file(file_path):
-    documents = []
-    with open(file_path, 'r', encoding='utf-8') as f:
-        first_char = f.read(1)
-        f.seek(0)
-        if first_char == '[':
-            data = json.load(f)
-            documents.extend([Document(page_content=entry['text']) for entry in data if 'text' in entry])
-        else:
-            for line in f:
-                entry = json.loads(line.strip())
-                if 'text' in entry:
-                    documents.append(Document(page_content=entry['text']))
-    return documents
-
-def load_json_as_documents(directory):
-    documents = []
-    for filename in os.listdir(directory):
-        if filename.endswith(".json"):
-            path = os.path.join(directory, filename)
-            with open(path, 'r', encoding='utf-8') as f:
-                try:
-                    raw_content = f.read()
-                    # Optionally, reformat it as pretty-printed JSON
-                    parsed = json.loads(raw_content)
-                    pretty_json = json.dumps(parsed, indent=2)
-                    documents.append(Document(page_content=pretty_json, metadata={"source": filename}))
-                except Exception as e:
-                    print(f"Skipping {filename} due to error: {e}")
-
-    # Extract list of 'Entry' strings if the JSON is a list of dicts
-    entries = [item['Entry'] for item in documents if 'Entry' in item]
-
-    with questions.batch.fixed_size(batch_size=200) as batch:
-        for d in entries:
-            print(d)
-            batch.add_object(
-                {
-                    "entry": d
-                }
-            )
-            if batch.number_errors > 10:
-                print("Batch import stopped due to excessive errors.")
-                break
-
-    failed_objects = questions.batch.failed_objects
-    if failed_objects:
-        print(f"Number of failed imports: {len(failed_objects)}")
-        print(f"First failed object: {failed_objects[0]}")
-
-    client.close()  # Free up resources
-    return documents
-
-# Function to update user interactions
-def update_user_interactions(user_id, is_rude=False, apologized=False):
-    if user_id not in user_interactions["users"]:
-        user_interactions["users"][user_id] = {"rudeness_score": 0, "requires_apology": False}
-    
-    user_data = user_interactions["users"][user_id]
-    if is_rude:
-        user_data["rudeness_score"] += 1
-        if user_data["rudeness_score"] >= 2:  # Threshold for requiring an apology
-            user_data["requires_apology"] = True
-    elif apologized:
-        user_data["rudeness_score"] = 0
-        user_data["requires_apology"] = False
-    
-    with open(user_interactions_file, 'w', encoding='utf-8') as f:
-        json.dump(user_interactions, f, indent=4)
-
-# Step 5: Function to generate a response
-def generate_response(user_id, user_input):
-    """
-    Generate a response using the RetrievalQA chain with the fused personality.
-
-    Parameters:
-    - user_id (str): Identifier for the user.
-    - user_input (str): The user's input text.
-
-    Returns:
-    - str: The AI-generated response.
-    """
-    input_lower = user_input.lower()
-    
-    # Check if user requires an apology
-    user_data = user_interactions["users"].get(user_id, {"rudeness_score": 0, "requires_apology": False})
-    if user_data.get("requires_apology", False):
-        if "sorry" in input_lower or "apologize" in input_lower:
-            update_user_interactions(user_id, apologized=True)
-            return next(item['response'] for item in personality_data['example_dialogue'] if item['user'].lower() == "i’m sorry for being rude.")
-        return "I’m waiting for an apology, sweetie. I don’t respond to rudeness without respect."
-
-    # Check for rudeness
-    is_rude = any(keyword in input_lower for keyword in rude_keywords)
-    if is_rude:
-        update_user_interactions(user_id, is_rude=True)
-        return next(item['response'] for item in personality_data['example_dialogue'] if item['user'].lower() == "just do what i say, you stupid robot!")
-    try:
-        result = rag_chain.invoke({"input": user_input})
-        response = result['result'] #f"[S1] {result['result']}"
-        # Log the interaction
-        logging.info(f"User: {user_input}")
-        logging.info(f"Bot: {response}")
-        logging.info("Retrieved Memories:")
-        for doc in result['source_documents']:
-            logging.info(f"- {doc.page}")
-        logging.info("")
-        return response
-    except Exception as e:
-        logging.error(f"Error generating response: {e}")
-        return "I'm sorry, I couldn't process your request."
-    
-# Step 1: Load the cleaned JSON files
-documents = load_json_as_documents(directory) #f"{directory}/cleaned_SupercellAMemory0.json")
-
+personality_data  = load_personality_file()
+user_interactions = init_interactions()
+documents         = load_json_as_documents(directory)
 if not documents:
     print("No documents extracted from JSON files. Please check the file contents.")
     exit()
 
 print(f"Loaded {len(documents)} documents for RAG.")
 
-# Step 2: Create embeddings and index the documents
-try:
-    print("Step 2: Creating embeddings and indexing documents...")
-    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-    vector_store = FAISS.from_documents(documents, embeddings)
-    print("Embeddings and vector store created.")
-except Exception as e:
-    print(f"Error creating embeddings or vector store: {e}")
-    exit()
-
-# Step 3: Set up the language model for generation
-try:
-    print("Step 3: Setting up the language model...")
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", "You are a snarky but helpful assistant."),
-        ("human", "{input}\n\nUse this context if helpful:\n{context}")
-    ])
-
-    llm = HuggingFacePipeline.from_model_id(
-        model_id="tiiuae/falcon-7b-instruct", #"mistralai/Mistral-7B-Instruct-v0.1", #"distilgpt2", #TheBloke/dolphin-2.7-mixtral-8x7b-GGUF 
-        task="text-generation",
-        pipeline_kwargs={"max_length": 100, "num_return_sequences": 1}
-    )
-
-    llm_chain = prompt | llm  # This is now a Runnable
-    print("Language model set up.")
-except Exception as e:
-    print(f"Error setting up the language model: {e}")
-    exit()
-
-# Load the personality from robot_personality.json
-try:
-    personality_file = f"{current_dir}/robot_personality.json"
-    with open(personality_file, 'r', encoding='utf-8') as f:
-        personality_data = json.load(f)
-except FileNotFoundError:
-    print(f"Personality file not found at {personality_file}. Please create robot_personality.json.")
-    logging.error(f"Personality file not found at {personality_file}.")
-    exit(1)
-
-# Load or initialize user interactions
-try:
-    user_interactions_file = f"{current_dir}/user_interactions.json"
-    with open(user_interactions_file, 'r', encoding='utf-8') as f:
-        user_interactions = json.load(f)
-except FileNotFoundError:
-    user_interactions = {"users": {}}
-    with open(user_interactions_file, 'w', encoding='utf-8') as f:
-        json.dump(user_interactions, f, indent=4)
-
 # Extract personality details
-char_name = personality_data['char_name']
+char_name     = personality_data['char_name']
 
 # Rudeness detection keywords
 rude_keywords = ["stupid", "idiot", "shut up", "useless", "dumb"]
-
-# Step 4: Create a RetrievalQA chain with the fused personality
-try:
-    rag_chain = create_retrieval_chain(vector_store.as_retriever(), llm_chain)
-    print("RetrievalQA chain created.")
-except Exception as e:
-    print(f"Error creating the RetrievalQA chain: {e}")
-    exit()
+rag_chain     = create_rag_chain(client, user_id, documents)
 
 # Step 6: Chatbot loop (for standalone testing)
 if __name__ == "__main__":
-    user_id = "default_user"  # For a single-user system; can be modified for multi-user
+    parser = argparse.ArgumentParser(description="Demo of boolean flag with argparse.")
+    parser.add_argument("--set", metavar="KEY=VALUE", help="Set a configuration value (e.g., user.name=Alice)")
+    parser.add_argument("--use_dia", action="store_true", help="Enable Dia audio model use and output") # Boolean flag
+    args = parser.parse_args()
+
+    if args.use_dia:
+        dia_model = Dia.from_pretrained("nari-labs/Dia-1.6B", compute_dtype="float16")
+        print("Audio mode is ON")
+    else:
+        print("Audio mode is OFF")
+
+        config = load_config()
+
+    if args.set:
+        if "=" not in args.set:
+            parser.error("Argument to --set must be in key=value format.")
+        key, value = args.set.split("=", 1)
+
+        # Type inference (primitive)
+        if value.lower() in ("true", "false"):
+            value = value.lower() == "true"
+        elif value.isdigit():
+            value = int(value)
+
+        config = update_config(config, key, value)
+        save_config(config)
+        print(f"Updated {key} to {value}")
+
+    print("Current config:")
+    print(config)
     print(f"\n{char_name} is ready! Type your message (or 'quit' to exit).")
     while True:
         try:
@@ -280,10 +116,11 @@ if __name__ == "__main__":
             if user_input.lower() == 'quit':
                 print("Goodbye!")
                 break
-            response = generate_response(user_id, user_input)
-            #output = model.generate(f"[S1] {response}", use_torch_compile=True, verbose=True)
-            #model.save_audio(f"response.mp3", output)
-            #playsound("response.mp3")
+            response = generate_response(user_id, user_interactions, user_input, rude_keywords, personality_data, rag_chain)
+            if(args.use_dia):
+                output = dia_model.generate(f"[S1] {response}", use_torch_compile=True, verbose=True)
+                dia_model.save_audio(f"response.mp3", output)
+                playsound("response.mp3")
             print(f"{char_name}: {response}")
         except Exception as e:
             print(f"Error in chatbot loop: {e}")
