@@ -1,14 +1,15 @@
 import os
 import logging
 import argparse
-from   automat_core import load_json_as_documents, load_personality_file, init_interactions, generate_response, create_rag_chain
-from automat_config import load_config, save_config, update_config
+
 import weaviate
 from weaviate.classes.init import Auth
 from weaviate.classes.config import Configure
 
 from dia.model import Dia
 from playsound import playsound
+from automat_llm.core   import load_json_as_documents, load_personality_file, init_interactions, generate_response, create_rag_chain
+from automat_llm.config import load_config, save_config, update_config
 
 # Best practice: store your credentials in environment variables
 weaviate_url = weaviate_url     = "enb5w7lzsiggptazuakxug.c0.us-east1.gcp.weaviate.cloud" #os.environ["WEAVIATE_URL"]
@@ -77,7 +78,7 @@ char_name     = personality_data['char_name']
 rude_keywords = ["stupid", "idiot", "shut up", "useless", "dumb"]
 rag_chain     = create_rag_chain(client, user_id, documents)
 
-# Step 6: Chatbot loop (for standalone testing)
+# Chatbot loop
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Demo of boolean flag with argparse.")
     parser.add_argument("--set", metavar="KEY=VALUE", help="Set a configuration value (e.g., user.name=Alice)")
@@ -107,8 +108,7 @@ if __name__ == "__main__":
         save_config(config)
         print(f"Updated {key} to {value}")
 
-    print("Current config:")
-    print(config)
+    print(f"Current config:\n{config}")
     print(f"\n{char_name} is ready! Type your message (or 'quit' to exit).")
     while True:
         try:
