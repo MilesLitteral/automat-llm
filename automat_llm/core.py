@@ -148,7 +148,7 @@ def create_rag_chain_falcon(client, user_id, documents):
         print(f"Error creating the RetrievalQA chain: {e}")
         exit()
 
-def create_rag_chain_falcon_mistral(client, user_id, documents):
+def create_rag_chain_mistral(client, user_id, documents):
     try:
         print("Step 1: Creating embeddings and indexing documents...")
         embeddings   = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
