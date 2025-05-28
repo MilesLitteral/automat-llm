@@ -1,19 +1,15 @@
 import tomllib  # For reading
 import tomli_w  # For writing (install via: pip install tomli-w)
-from pathlib import Path
+from   pathlib import Path
 
 CONFIG_PATH = Path("user_config.toml")
 
 def load_config(path=CONFIG_PATH):
     if not path.exists():
         print("No config found, initializing default config.")
-        return {
-            "user": {
-                "name": "Anonymous",
-                "theme": "dark",
-                "notifications": True
-            }
-        }
+        config = {"user": {"name": "Anonymous", "theme": "dark", "notifications": True}}
+        save_config(config)
+        return config
     with path.open("rb") as f:
         return tomllib.load(f)
 

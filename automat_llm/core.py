@@ -97,7 +97,7 @@ def create_rag_chain(client, user_id, documents):
         ])
 
         llm = HuggingFacePipeline.from_model_id(
-            model_id="distilgpt2",#"tiiuae/falcon-7b-instruct", #"mistralai/Mistral-7B-Instruct-v0.1", #"distilgpt2", #TheBloke/dolphin-2.7-mixtral-8x7b-GGUF 
+            model_id="distilgpt2", #these models fix the error GPT-2 encounters but you need ~14Gb free to use this one: "tiiuae/falcon-7b-instruct", ~100Gb: #"mistralai/Mistral-7B-Instruct-v0.1", ~ 90Gb: #TheBloke/dolphin-2.7-mixtral-8x7b-GGUF 
             task="text-generation",
             pipeline_kwargs={"max_length": 100, "num_return_sequences": 1}
         )

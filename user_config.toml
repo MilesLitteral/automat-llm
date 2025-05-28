@@ -1,4 +1,4 @@
 [user]
-name = "Alice"
-theme = "light"
+default_user  = "Alice"
+theme         = "light"
 notifications = true
