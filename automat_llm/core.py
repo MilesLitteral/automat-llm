@@ -10,8 +10,9 @@ from langchain.schema  import Document
 
 current_dir = os.getcwd()
 
-def load_json_as_documents(client, questions, directory):
+def load_json_as_documents(client, directory):
     documents = []
+    collection = client.collections.use("MyCollection") #TBA: use(f"{user_id}_Collection")
     for filename in os.listdir(directory):
         if filename.endswith(".json"):
             path = os.path.join(directory, filename)
@@ -28,7 +29,7 @@ def load_json_as_documents(client, questions, directory):
     # Extract list of 'Entry' strings if the JSON is a list of dicts
     entries = [item['Entry'] for item in documents if 'Entry' in item]
 
-    with questions.batch.fixed_size(batch_size=200) as batch:
+    with collection.batch.fixed_size(batch_size=200) as batch:
         for d in entries:
             print(d)
             batch.add_object(
@@ -40,7 +41,7 @@ def load_json_as_documents(client, questions, directory):
                 print("Batch import stopped due to excessive errors.")
                 break
 
-    failed_objects = questions.batch.failed_objects
+    failed_objects = collection.batch.failed_objects
     if failed_objects:
         print(f"Number of failed imports: {len(failed_objects)}")
         print(f"First failed object: {failed_objects[0]}")
@@ -75,30 +76,38 @@ def load_personality_file():
 
 
 def create_rag_chain(client, user_id, documents):
-    from   weaviate.classes.config import Configure
+    from weaviate.classes.config import Configure
     try:
         print("Step 1: Creating embeddings and indexing documents...")
-        if(client.collections.get("Embeddings") != None):
-            embeddings   = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2") # TBA: #= client.collections.get("Embeddings")
+        client.connect()
+        if client.collections.get("Embeddings") is not None:
+            embeddings   = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
             Embeddings_W = client.collections.get("Embeddings")
         else:
             embeddings   = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
             Embeddings_W = client.collections.create(
                 name="Embeddings",
-                vectorizer_config=Configure.Vectorizer.text2vec_weaviate(), # Configure the Weaviate Embeddings integration
-                generative_config=Configure.Generative.cohere()             # Configure the Cohere generative AI integration
+                vectorizer_config=Configure.Vectorizer.text2vec_weaviate(),
+                generative_config=Configure.Generative.cohere()
             )
+
+        # Create FAISS vector store
         vector_store = FAISS.from_documents(documents, embeddings)
         print("Embeddings and vector store created.")
-        uuid = Embeddings_W.data.insert(
-            properties={
-                "user_id":    user_id,
-                "embeddings": embeddings,
-            },
-            vector=vector_store[0]
-        )
 
-        print(f"Embeddings uploaded with ID: {uuid}")  # the return value is the object's UUID
+        # Upload embeddings directly
+        text_list = [doc.page_content for doc in documents]
+        vectors   = embeddings.embed_documents(text_list)
+        for i, vec in enumerate(vectors):
+            uuid = Embeddings_W.data.insert(
+                properties={
+                    "user_id": user_id,
+                    "text":    text_list[i],
+                },
+                vector=vec
+            )
+            print(f"Uploaded doc {i+1}/{len(vectors)} with UUID: {uuid}")
+
         print("Step 2: Setting up the language model...")
         prompt = ChatPromptTemplate.from_messages([
             ("system", "You are a snarky but helpful assistant."),
@@ -106,19 +115,21 @@ def create_rag_chain(client, user_id, documents):
         ])
 
         llm = HuggingFacePipeline.from_model_id(
-            model_id="distilgpt2", #these models fix the error GPT-2 encounters but you need ~14Gb free to use this one: "tiiuae/falcon-7b-instruct", ~100Gb: #"mistralai/Mistral-7B-Instruct-v0.1", ~ 90Gb: #TheBloke/dolphin-2.7-mixtral-8x7b-GGUF 
+            model_id="distilgpt2",
             task="text-generation",
             pipeline_kwargs={"max_length": 100, "num_return_sequences": 1}
         )
 
-        llm_chain = prompt | llm  # This is now a Runnable
+        llm_chain = prompt | llm
         print("Language model set up.")
+
         rag_chain = create_retrieval_chain(vector_store.as_retriever(), llm_chain)
         print("RetrievalQA chain created.")
         return rag_chain
+
     except Exception as e:
         print(f"Error creating the RetrievalQA chain: {e}")
-        exit()
+        return None
 
 def create_rag_chain_falcon(client, user_id, documents):
     try:

@@ -1,0 +1,60 @@
+2025-11-09 01:07:11,819 - INFO - HTTP Request: GET https://enb5w7lzsiggptazuakxug.c0.us-east1.gcp.weaviate.cloud/v1/meta "HTTP/1.1 404 Not Found"
+2025-11-09 01:11:47,902 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-09 01:11:48,788 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-09 01:43:54,768 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-09 01:43:55,683 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-09 01:45:02,453 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-09 01:45:03,140 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-09 01:45:35,578 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-09 01:45:36,199 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-09 01:47:58,088 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-09 01:47:58,724 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-09 01:49:00,086 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-09 01:49:01,048 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-09 01:49:01,149 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/schema/MyCollection "HTTP/1.1 404 Not Found"
+2025-11-09 01:49:08,527 - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-11-09 01:49:08,527 - INFO - NumExpr defaulting to 8 threads.
+2025-11-09 01:49:10,166 - INFO - Use pytorch device_name: cpu
+2025-11-09 01:49:10,166 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 01:51:32,668 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-09 01:51:33,270 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-09 01:51:33,359 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/schema/MyCollection "HTTP/1.1 404 Not Found"
+2025-11-09 01:51:35,628 - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-11-09 01:51:35,628 - INFO - NumExpr defaulting to 8 threads.
+2025-11-09 01:51:36,352 - INFO - Use pytorch device_name: cpu
+2025-11-09 01:51:36,352 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 01:51:38,245 - INFO - Loading faiss with AVX2 support.
+2025-11-09 01:51:38,508 - INFO - Successfully loaded faiss with AVX2 support.
+2025-11-09 01:51:38,515 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-11-09 01:53:03,147 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-09 01:53:03,922 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-09 01:53:04,005 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/schema/MyCollection "HTTP/1.1 404 Not Found"
+2025-11-09 01:53:06,228 - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-11-09 01:53:06,229 - INFO - NumExpr defaulting to 8 threads.
+2025-11-09 01:53:06,941 - INFO - Use pytorch device_name: cpu
+2025-11-09 01:53:06,942 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 01:53:08,395 - INFO - Loading faiss with AVX2 support.
+2025-11-09 01:53:08,416 - INFO - Successfully loaded faiss with AVX2 support.
+2025-11-09 01:53:08,422 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-11-09 01:54:19,700 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-09 01:54:20,365 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-09 01:54:20,452 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/schema/MyCollection "HTTP/1.1 404 Not Found"
+2025-11-09 01:54:20,912 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-09 01:54:21,418 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-09 01:54:23,836 - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-11-09 01:54:23,836 - INFO - NumExpr defaulting to 8 threads.
+2025-11-09 01:54:24,584 - INFO - Use pytorch device_name: cpu
+2025-11-09 01:54:24,584 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 01:54:25,959 - INFO - Loading faiss with AVX2 support.
+2025-11-09 01:54:25,981 - INFO - Successfully loaded faiss with AVX2 support.
+2025-11-09 01:54:25,987 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-11-09 01:54:26,764 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-09 01:54:26,842 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-09 01:54:26,923 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-09 01:54:27,005 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-09 01:54:27,083 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-09 01:54:27,166 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-09 01:54:27,240 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-09 01:54:27,317 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-09 01:54:27,400 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-09 01:54:27,484 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"

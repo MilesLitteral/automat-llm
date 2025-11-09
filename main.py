@@ -15,9 +15,9 @@ config      = load_config()
 current_dir = os.getcwd()
 
 # Best practice: store your credentials in environment variables
-weaviate_url     = "enb5w7lzsiggptazuakxug.c0.us-east1.gcp.weaviate.cloud" #os.environ["WEAVIATE_URL"]
-weaviate_api_key = "5aFrft85NhDXkz4GqS2OYJGv5XhlHu6GsOAo"                  #os.environ["WEAVIATE_API_KEY"]
-user_id          = config["default_user"]  # Automat-User-Id, In the future this will be in a config the user can set.
+weaviate_url     = "saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud" #os.environ["WEAVIATE_URL"]
+weaviate_api_key = "MUNkU3h3ZVM5cktEQ1RubF85elBEN3hSd2QvNWdvUC9DdkpGUWZiMmZLSXVXanhmVmV3NGQycXRsUGdrPV92MjAw" #"5aFrft85NhDXkz4GqS2OYJGv5XhlHu6GsOAo"                  #os.environ["WEAVIATE_API_KEY"]
+user_id          = "Automat-User-Id" #config["default_user"]  # Automat-User-Id, In the future this will be in a config the user can set.
                                            # It is made for a single-user system; can be modified for multi-user
 
 # Ensure directories exist
@@ -43,7 +43,7 @@ client = weaviate.connect_to_weaviate_cloud(
 
 personality_data  = load_personality_file()
 user_interactions = init_interactions()
-documents         = load_json_as_documents(directory)
+documents         = load_json_as_documents(client, directory)
 
 if not documents:
     print("No documents extracted from JSON files. Please check the file contents.")
