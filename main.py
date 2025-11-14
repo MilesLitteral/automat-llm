@@ -3,11 +3,11 @@ import logging
 import argparse
 
 import weaviate
-from   weaviate.classes.init import Auth
+from   weaviate.classes.init   import Auth
 from   weaviate.classes.config import Configure
 
-from dia.model import Dia
-from playsound import playsound
+#from dia import model as Dia
+#from playsound import playsound
 from automat_llm.core   import load_json_as_documents, load_personality_file, init_interactions, generate_response, create_rag_chain
 from automat_llm.config import load_config, save_config, update_config
 
@@ -15,9 +15,9 @@ config      = load_config()
 current_dir = os.getcwd()
 
 # Best practice: store your credentials in environment variables
-weaviate_url     = "saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud" #os.environ["WEAVIATE_URL"]
-weaviate_api_key = "MUNkU3h3ZVM5cktEQ1RubF85elBEN3hSd2QvNWdvUC9DdkpGUWZiMmZLSXVXanhmVmV3NGQycXRsUGdrPV92MjAw" #"5aFrft85NhDXkz4GqS2OYJGv5XhlHu6GsOAo"                  #os.environ["WEAVIATE_API_KEY"]
-user_id          = "Automat-User-Id" #config["default_user"]  # Automat-User-Id, In the future this will be in a config the user can set.
+weaviate_url     = os.environ["WEAVIATE_URL"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
+user_id          = "Automat-User-Id" # config["default_user"]  # , In the future this will be in a config the user can set.
                                            # It is made for a single-user system; can be modified for multi-user
 
 # Ensure directories exist
@@ -34,7 +34,6 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
-
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=weaviate_url,                                    # Replace with your Weaviate Cloud URL
@@ -66,7 +65,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.use_dia:
-        dia_model = Dia.from_pretrained("nari-labs/Dia-1.6B", compute_dtype="float16")
+        #dia_model = Dia.from_pretrained("nari-labs/Dia-1.6B", compute_dtype="float16")
         print("Audio mode is ON")
     else:
         print("Audio mode is OFF")
@@ -95,10 +94,10 @@ if __name__ == "__main__":
                 print("Goodbye!")
                 break
             response = generate_response(user_id, user_interactions, user_input, rude_keywords, personality_data, rag_chain)
-            if(args.use_dia):
-                output = dia_model.generate(f"[S1] {response}", use_torch_compile=True, verbose=True)
-                dia_model.save_audio(f"response.mp3", output)
-                playsound("response.mp3")
+            #if(args.use_dia):
+                #output = dia_model.generate(f"[S1] {response}", use_torch_compile=True, verbose=True)
+                #dia_model.save_audio(f"response.mp3", output)
+                #playsound("response.mp3")
             print(f"{char_name}: {response}")
         except Exception as e:
             print(f"Error in chatbot loop: {e}")

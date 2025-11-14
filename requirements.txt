@@ -5,11 +5,14 @@ langchain
 transformers
 pydantic
 langchain_core
-weaviate-client
+weaviate-client<5
 faiss-cpu
-#faiss-gpu
-playsound
 numpy
+groq
+langchain_groq
+#accelerate #for using gpt-oss-20b
+#faiss-gpu
+#playsound
 
 #For automat-server
 fastapi 
