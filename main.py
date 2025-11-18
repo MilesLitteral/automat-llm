@@ -7,7 +7,7 @@ from   weaviate.classes.init   import Auth
 from   weaviate.classes.config import Configure
 
 #from dia import model as Dia
-from playsound import playsound
+#from playsound import playsound
 from automat_llm.core   import load_json_as_documents, load_personality_file, init_interactions, generate_response, create_rag_chain
 from automat_llm.config import load_config, save_config, update_config
 
