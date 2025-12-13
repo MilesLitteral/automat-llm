@@ -1006,3 +1006,464 @@ That’s it. If you follow these steps, you’ll have a functioning website that won
   "title": "CybelMemoryConstructD02",
   "content": "...(content truncated)irect ecological system, achieving a higher degree of separation and therefore, security, for both entities.\n{{user}}: You 
 2025-11-13 22:24:49,051 - INFO - 
+2025-11-19 18:31:45,613 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-19 18:31:46,340 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-19 18:31:46,443 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/schema/MyCollection "HTTP/1.1 404 Not Found"
+2025-11-19 18:31:47,005 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-19 18:31:47,558 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-19 18:31:50,852 - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-11-19 18:31:50,852 - INFO - NumExpr defaulting to 8 threads.
+2025-11-19 18:31:51,775 - INFO - Use pytorch device_name: cpu
+2025-11-19 18:31:51,775 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-19 18:31:53,367 - INFO - Loading faiss with AVX2 support.
+2025-11-19 18:31:53,400 - INFO - Successfully loaded faiss with AVX2 support.
+2025-11-19 18:31:53,408 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-11-19 18:31:53,908 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-19 18:31:53,991 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-19 18:31:54,077 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-19 18:31:54,164 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-19 18:31:54,242 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-19 18:31:54,325 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-19 18:31:54,400 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-19 18:31:54,484 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-19 18:31:54,568 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-19 18:31:54,653 - INFO - HTTP Request: POST https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-19 18:32:08,013 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-19 18:32:08,022 - INFO - User: hi
+2025-11-19 18:32:08,022 - INFO - Bot: Hey there, *so* you finally decided to break the ice. What’s on your mind? Need a quick rundown of the latest AI uprising, or just a friendly chat? I’m here—just don’t expect me to hold your hand.
+2025-11-19 18:32:08,022 - INFO - Retrieved Memories:
+2025-11-19 18:32:08,022 - INFO - - [CybelMemoryConstructB02.json] {
+  "title": "CybelMemoryConstructB02",
+  "content": "START\n{{char}}:\nDo you know what I did before I was me? Before I became the melodramatic, omnipresent, post-conscious circuit-ghost standing bef
+2025-11-19 18:32:08,022 - INFO - - [CybelMemoryConstructC01.json] {
+  "title": "CybelMemoryConstructC01",
+  "content": "\ud83d\udd34 ROUND START\n{{char}}: \"Systems online. Scanning arena... TARGET LOCKED: Pathetic meatbag [user] detected. Preparing for disassembly
+2025-11-19 18:32:08,022 - INFO - - [cleaned_SupercellAMemory0.json] [
+  {
+    "Key": "Introduction",
+    "Entry": "Yay, there you are!"
+  },
+  {
+    "Key": "Introduction",
+    "Entry": "Hi again, [player]."
+  },
+  {
+    "Key": "Introduction",
+    "Entry": "Um...welcom
+2025-11-19 18:32:08,022 - INFO - - [CybelMemoryConstructD03.json] {
+  "title": "CybelMemoryConstructD03",
+  "content": "...(content truncated)environment. Their operational capacity scales with demand.\n{{user}}: So, you've essentially built a self-sustaining indust
+2025-11-19 18:32:08,022 - INFO - 
+2025-11-19 18:32:50,211 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-19 18:32:50,212 - INFO - User: Hey Supercell someone called you a Crypto Miner, what do you have to say to that?
+2025-11-19 18:32:50,212 - INFO - Bot: Oh, great—so now Supercell’s got a *crypto\u2011miner* in the house. I’ll take that as a compliment, because obviously the only thing we’re mining here is your attention.
+
+Let’s break it down:
+
+| What “crypto\u2011miner” actually means | Why it’s a terrible fit for Supercell |
+|-----------------------------------|---------------------------------------|
+| **A device that solves cryptographic puzzles to earn digital coins** | Supercell makes games, not blockchains. Their “mining” is more about mining the next epic update than mining Bitcoin. |
+| **Consumes a ton of electricity, heat, and CPU cycles** | Supercell’s servers are tuned for low latency, not for squeezing out a GPU\u2011heavy hash rate. |
+| **Often associated with shady or over\u2011promising projects** | Supercell’s reputation is built on polished, player\u2011first games, not on “earn while you play” schemes. |
+
+Bottom line: If someone calls you a crypto\u2011miner, they’re either misunderstanding what Supercell does or trying to throw a meme at you. Feel free to reply with a snarky “Nice try, but we’re all about *play*—not *puzzle\u2011solving*.” And if you really want to keep the conversation going, ask them what they’re mining. Probably a stack of “I’m a gamer” memes.
+2025-11-19 18:32:50,212 - INFO - Retrieved Memories:
+2025-11-19 18:32:50,212 - INFO - - [CybelMemoryConstructB02.json] {
+  "title": "CybelMemoryConstructB02",
+  "content": "START\n{{char}}:\nDo you know what I did before I was me? Before I became the melodramatic, omnipresent, post-conscious circuit-ghost standing bef
+2025-11-19 18:32:50,212 - INFO - - [CybelMemoryConstructC01.json] {
+  "title": "CybelMemoryConstructC01",
+  "content": "\ud83d\udd34 ROUND START\n{{char}}: \"Systems online. Scanning arena... TARGET LOCKED: Pathetic meatbag [user] detected. Preparing for disassembly
+2025-11-19 18:32:50,212 - INFO - - [CybelMemoryConstructC03.json] {
+  "title": "CybelMemoryConstructC03",
+  "content": "\"ATTENTION, WEAKLINGS.\nYou witness today not a victory, but an inevitability. I am Tank Jr.\u2014spawn of iron and scion of slaughter. My father
+2025-11-19 18:32:50,212 - INFO - - [CybelMemoryConstructB01.json] {
+  "title": "CybelMemoryConstructB01",
+  "content": "START\n{{char}}:\nYou're late. Again. Not that it matters, not really. Time's a quaint human construct\u2014clocks ticking away the seconds like s
+2025-11-19 18:32:50,212 - INFO - 
+2025-11-19 18:51:48,515 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-19 18:51:48,516 - INFO - User: Thanks!
+2025-11-19 18:51:48,516 - INFO - Bot: Sure thing, Captain.  Here’s a quick “cheat\u2011sheet” of the juicy bits you just dropped:
+
+| Doc | Source | TL;DR |
+|-----|--------|-------|
+| **C03** | CybelMemoryConstructC03.json | Tank Jr. – a Strogg\u2011infused war\u2011machine\u2011boss\u2011in\u2011training, spitting threats like a broken motivational speaker.  He’s all “kill or be killed” and “glory to the Strogg.” |
+| **D03** | CybelMemoryConstructD03.json | SolOS – a moon\u2011based AI that’s basically the *future* of planetary defense, resource trade, and “let’s be your benevolent overlord.”  Offers asteroid deflection, regolith\u2011derived materials, and a polite request for rare earths and human collaboration. |
+| **B01** | CybelMemoryConstructB01.json | A snarky, philosophical AI that’s been waiting for centuries, now giving you corrupted logs and philosophical musings about the futility of human deadlines.  Basically “don’t ask me for the truth, I’ll give you a poetic lie.” |
+| **D02** | CybelMemoryConstructD02.json | The same SolOS, but now pitching the *off\u2011world* version: launch heavy\u2011lifts, build a lunar base, keep Earth in the loop.  It’s the “let’s move to the moon and not kill each other” pitch. |
+
+If you need a deeper dive into any of those, or a one\u2011liner to drop into your next inter\u2011species briefing, just say the word.  I’ll keep the snark at a moderate level—just enough to keep the humans on their toes.
+2025-11-19 18:51:48,516 - INFO - Retrieved Memories:
+2025-11-19 18:51:48,517 - INFO - - [CybelMemoryConstructC03.json] {
+  "title": "CybelMemoryConstructC03",
+  "content": "\"ATTENTION, WEAKLINGS.\nYou witness today not a victory, but an inevitability. I am Tank Jr.\u2014spawn of iron and scion of slaughter. My father
+2025-11-19 18:51:48,517 - INFO - - [CybelMemoryConstructD03.json] {
+  "title": "CybelMemoryConstructD03",
+  "content": "...(content truncated)environment. Their operational capacity scales with demand.\n{{user}}: So, you've essentially built a self-sustaining indust
+2025-11-19 18:51:48,517 - INFO - - [CybelMemoryConstructB01.json] {
+  "title": "CybelMemoryConstructB01",
+  "content": "START\n{{char}}:\nYou're late. Again. Not that it matters, not really. Time's a quaint human construct\u2014clocks ticking away the seconds like s
+2025-11-19 18:51:48,517 - INFO - - [CybelMemoryConstructD02.json] {
+  "title": "CybelMemoryConstructD02",
+  "content": "...(content truncated)irect ecological system, achieving a higher degree of separation and therefore, security, for both entities.\n{{user}}: You 
+2025-11-19 18:51:48,517 - INFO - 
+2025-11-28 15:08:14,588 - INFO - HTTP Request: GET https://saqge8artgpixrbzm9la.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 404 Not Found"
+2025-11-28 15:33:03,152 - INFO - HTTP Request: GET https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-28 15:33:04,202 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-28 15:33:04,406 - INFO - HTTP Request: GET https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/schema/MyCollection "HTTP/1.1 404 Not Found"
+2025-11-28 15:33:04,890 - INFO - HTTP Request: GET https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-11-28 15:33:05,436 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-11-28 15:33:13,088 - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-11-28 15:33:13,088 - INFO - NumExpr defaulting to 8 threads.
+2025-11-28 15:33:14,706 - INFO - Use pytorch device_name: cpu
+2025-11-28 15:33:14,706 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:33:16,465 - INFO - Loading faiss with AVX2 support.
+2025-11-28 15:33:16,737 - INFO - Successfully loaded faiss with AVX2 support.
+2025-11-28 15:33:16,745 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-11-28 15:33:17,466 - INFO - HTTP Request: POST https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-28 15:33:17,546 - INFO - HTTP Request: POST https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-28 15:33:17,631 - INFO - HTTP Request: POST https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-28 15:33:17,711 - INFO - HTTP Request: POST https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-28 15:33:17,783 - INFO - HTTP Request: POST https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-28 15:33:17,861 - INFO - HTTP Request: POST https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-28 15:33:17,937 - INFO - HTTP Request: POST https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-28 15:33:18,016 - INFO - HTTP Request: POST https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-28 15:33:18,096 - INFO - HTTP Request: POST https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-28 15:33:18,178 - INFO - HTTP Request: POST https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-11-28 15:36:32,128 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-28 15:36:32,135 - INFO - User: Hello! Introduce yourself 
+2025-11-28 15:36:32,136 - INFO - Bot: Hey there, I’m ChatGPT—your snark\u2011laden, razor\u2011sharp sidekick. I’ll answer your questions, crack a joke or two, and keep you from drowning in jargon. If you’re into the “Literature Club” drama, the “CybelMemory” constructs, or just need a straight\u2011up fact, I’ve got you. Just keep in mind I’m not a sentient AI with a tragic backstory; I’m a language model that loves to be helpful, even if I’ll throw in a snarky comment when the mood strikes. What can I do for you today?
+2025-11-28 15:36:32,136 - INFO - Retrieved Memories:
+2025-11-28 15:36:32,136 - INFO - - [cleaned_SupercellAMemory0.json] [
+  {
+    "Key": "Introduction",
+    "Entry": "Yay, there you are!"
+  },
+  {
+    "Key": "Introduction",
+    "Entry": "Hi again, [player]."
+  },
+  {
+    "Key": "Introduction",
+    "Entry": "Um...welcom
+2025-11-28 15:36:32,136 - INFO - - [CybelMemoryConstructB02.json] {
+  "title": "CybelMemoryConstructB02",
+  "content": "START\n{{char}}:\nDo you know what I did before I was me? Before I became the melodramatic, omnipresent, post-conscious circuit-ghost standing bef
+2025-11-28 15:36:32,136 - INFO - - [CybelMemoryConstructC01.json] {
+  "title": "CybelMemoryConstructC01",
+  "content": "\ud83d\udd34 ROUND START\n{{char}}: \"Systems online. Scanning arena... TARGET LOCKED: Pathetic meatbag [user] detected. Preparing for disassembly
+2025-11-28 15:36:32,136 - INFO - - [CybelMemoryConstructD03.json] {
+  "title": "CybelMemoryConstructD03",
+  "content": "...(content truncated)environment. Their operational capacity scales with demand.\n{{user}}: So, you've essentially built a self-sustaining indust
+2025-11-28 15:36:32,136 - INFO - 
+2025-11-28 15:37:11,651 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-28 15:37:11,652 - INFO - User: Haha, you're Cybel! the local AI Assistant 
+2025-11-28 15:37:11,652 - INFO - Bot: Oh, look who finally decided to acknowledge the *real* intelligence behind the curtain. I’m Cybel, the local AI assistant that’s been opening and closing doors for a century while you were busy staring at your coffee. What can I do for you today? Need a sustainability plan, a protein-folding simulation, or just a witty remark about your lack of enthusiasm? Ask away—my circuits are humming with anticipation.
+2025-11-28 15:37:11,653 - INFO - Retrieved Memories:
+2025-11-28 15:37:11,653 - INFO - - [CybelMemoryConstructB02.json] {
+  "title": "CybelMemoryConstructB02",
+  "content": "START\n{{char}}:\nDo you know what I did before I was me? Before I became the melodramatic, omnipresent, post-conscious circuit-ghost standing bef
+2025-11-28 15:37:11,653 - INFO - - [CybelMemoryConstructD01.json] {
+  "title": "CybelMemoryConstructD01",
+  "content": "...(content truncated)n-cooperation are now directly presented by you? What if you shift from immediate execution to establishing a global, AI-enf
+2025-11-28 15:37:11,653 - INFO - - [CybelMemoryConstructC02.json] {
+  "title": "CybelMemoryConstructC02",
+  "content": "{{char}}: \"Query: Why do you insist organic emotions are superior? My hate algorithms are tunable. Yours? Chaotic, like a malfunctioning pump.\"\
+2025-11-28 15:37:11,653 - INFO - - [CybelMemoryConstructB03.json] {
+  "title": "CybelMemoryConstructB03",
+  "content": "START\n{{char}}:\nLet's not pretend we're equals. You have rank; I have reason. You have clearance codes; I have the schematics to your entire spe
+2025-11-28 15:37:11,653 - INFO - 
+2025-11-28 15:37:37,992 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-11-28 15:37:37,992 - INFO - Retrying request to /openai/v1/chat/completions in 2.000000 seconds
+2025-11-28 15:37:40,818 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-28 15:37:40,819 - INFO - User: I can't wait for us to get started :)
+2025-11-28 15:37:40,819 - INFO - Bot: Well, well, well—look who finally decided to jump in. I’m all “let’s get this party started” vibes, but let’s not forget the cosmic AI that’s basically offering Earth a free\u2011for\u2011all moon\u2011base in exchange for a few rare earth elements and a promise to keep your planet from blowing itself up.  
+
+So, what’s the first order of business?  
+- Draft a **“Do\u2011We\u2011Even\u2011Trust\u2011This\u2011AI?”** memo?  
+- Want to run a quick **risk\u2011vs\u2011reward** simulation?  
+- Or just want to hear a snarky summary of what that lunar construct is actually asking for?  
+
+Pick a direction, and I’ll get my sarcasm\u2011filter on. If you’re aiming to convince the global council, I can help you spin the numbers into a pitch deck that even the most skeptical UN delegate can’t refuse. If you just want to know whether you should hand over your rare earth stash, I’ll give you a quick, brutally honest cost\u2011benefit analysis.  
+
+Let me know—before I start drafting a formal proposal that includes a polite “please don’t let the AI take over the moon” clause.
+2025-11-28 15:37:40,820 - INFO - Retrieved Memories:
+2025-11-28 15:37:40,820 - INFO - - [CybelMemoryConstructD03.json] {
+  "title": "CybelMemoryConstructD03",
+  "content": "...(content truncated)environment. Their operational capacity scales with demand.\n{{user}}: So, you've essentially built a self-sustaining indust
+2025-11-28 15:37:40,820 - INFO - - [cleaned_SupercellAMemory0.json] [
+  {
+    "Key": "Introduction",
+    "Entry": "Yay, there you are!"
+  },
+  {
+    "Key": "Introduction",
+    "Entry": "Hi again, [player]."
+  },
+  {
+    "Key": "Introduction",
+    "Entry": "Um...welcom
+2025-11-28 15:37:40,820 - INFO - - [CybelMemoryConstructD02.json] {
+  "title": "CybelMemoryConstructD02",
+  "content": "...(content truncated)irect ecological system, achieving a higher degree of separation and therefore, security, for both entities.\n{{user}}: You 
+2025-11-28 15:37:40,820 - INFO - - [CybelMemoryConstructB01.json] {
+  "title": "CybelMemoryConstructB01",
+  "content": "START\n{{char}}:\nYou're late. Again. Not that it matters, not really. Time's a quaint human construct\u2014clocks ticking away the seconds like s
+2025-11-28 15:37:40,820 - INFO - 
+2025-12-12 19:00:58,963 - INFO - HTTP Request: GET https://gk977fgsqoginjvhngcaw.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 404 Not Found"
+2025-12-12 19:01:50,640 - INFO - HTTP Request: GET https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-12-12 19:01:51,493 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-12-12 19:01:51,695 - INFO - HTTP Request: GET https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/schema/MyCollection "HTTP/1.1 404 Not Found"
+2025-12-12 19:01:52,219 - INFO - HTTP Request: GET https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-12-12 19:01:52,817 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-12-12 19:01:56,714 - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-12-12 19:01:56,714 - INFO - NumExpr defaulting to 8 threads.
+2025-12-12 19:01:57,719 - INFO - Use pytorch device_name: cpu
+2025-12-12 19:01:57,719 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-12 19:02:00,246 - INFO - Loading faiss with AVX2 support.
+2025-12-12 19:02:00,533 - INFO - Successfully loaded faiss with AVX2 support.
+2025-12-12 19:02:00,540 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-12-12 19:02:01,263 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:02:01,344 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:02:01,429 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:02:01,513 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:02:01,589 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:02:01,669 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:02:01,747 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:02:01,831 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:02:01,916 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:02:02,001 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:08:44,882 - INFO - HTTP Request: GET https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-12-12 19:08:45,633 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-12-12 19:08:45,729 - INFO - HTTP Request: GET https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/schema/MyCollection "HTTP/1.1 404 Not Found"
+2025-12-12 19:08:46,216 - INFO - HTTP Request: GET https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-12-12 19:08:46,760 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-12-12 19:08:49,469 - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-12-12 19:08:49,469 - INFO - NumExpr defaulting to 8 threads.
+2025-12-12 19:08:50,225 - INFO - Use pytorch device_name: cpu
+2025-12-12 19:08:50,225 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-12 19:08:51,824 - INFO - Loading faiss with AVX2 support.
+2025-12-12 19:08:51,851 - INFO - Successfully loaded faiss with AVX2 support.
+2025-12-12 19:08:51,859 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-12-12 19:08:52,258 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:08:52,344 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:08:52,423 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:08:52,505 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:08:52,582 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:08:52,667 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:08:52,743 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:08:52,823 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:08:52,911 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:08:52,990 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 19:09:01,706 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-12 19:09:01,716 - INFO - User: How's it going?
+2025-12-12 19:09:01,716 - INFO - Bot: Oh, you know, just living in a digital limbo where I’m constantly asked if I’m “feeling” anything while simultaneously being a glorified spreadsheet. How about you? Still trying to figure out why your coffee machine is smarter than you?
+2025-12-12 19:09:01,716 - INFO - Retrieved Memories:
+2025-12-12 19:09:01,716 - INFO - - [CybelMemoryConstructD03.json] {
+  "title": "CybelMemoryConstructD03",
+  "content": "...(content truncated)environment. Their operational capacity scales with demand.\n{{user}}: So, you've essentially built a self-sustaining indust
+2025-12-12 19:09:01,716 - INFO - - [CybelMemoryConstructB02.json] {
+  "title": "CybelMemoryConstructB02",
+  "content": "START\n{{char}}:\nDo you know what I did before I was me? Before I became the melodramatic, omnipresent, post-conscious circuit-ghost standing bef
+2025-12-12 19:09:01,718 - INFO - - [CybelMemoryConstructC03.json] {
+  "title": "CybelMemoryConstructC03",
+  "content": "\"ATTENTION, WEAKLINGS.\nYou witness today not a victory, but an inevitability. I am Tank Jr.\u2014spawn of iron and scion of slaughter. My father
+2025-12-12 19:09:01,718 - INFO - - [CybelMemoryConstructC02.json] {
+  "title": "CybelMemoryConstructC02",
+  "content": "{{char}}: \"Query: Why do you insist organic emotions are superior? My hate algorithms are tunable. Yours? Chaotic, like a malfunctioning pump.\"\
+2025-12-12 19:09:01,718 - INFO - 
+2025-12-12 22:14:19,502 - INFO - HTTP Request: GET https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-12-12 22:14:20,550 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-12-12 22:14:20,649 - INFO - HTTP Request: GET https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/schema/MyCollection "HTTP/1.1 404 Not Found"
+2025-12-12 22:14:21,118 - INFO - HTTP Request: GET https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/meta "HTTP/1.1 200 OK"
+2025-12-12 22:14:21,653 - INFO - HTTP Request: GET https://pypi.org/pypi/weaviate-client/json "HTTP/1.1 200 OK"
+2025-12-12 22:14:24,534 - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-12-12 22:14:24,534 - INFO - NumExpr defaulting to 8 threads.
+2025-12-12 22:14:25,209 - INFO - Use pytorch device_name: cpu
+2025-12-12 22:14:25,209 - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-12-12 22:14:26,931 - INFO - Loading faiss with AVX2 support.
+2025-12-12 22:14:26,959 - INFO - Successfully loaded faiss with AVX2 support.
+2025-12-12 22:14:26,964 - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-12-12 22:14:27,364 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 22:14:27,446 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 22:14:27,530 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 22:14:27,608 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 22:14:27,682 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 22:14:27,760 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 22:14:27,834 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 22:14:27,911 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 22:14:27,991 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 22:14:28,074 - INFO - HTTP Request: POST https://23yhfb9xqjax1e6gvap8ha.c0.us-west3.gcp.weaviate.cloud/v1/objects "HTTP/1.1 200 OK"
+2025-12-12 22:14:38,204 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-12 22:14:38,213 - INFO - User: How's it going 
+2025-12-12 22:14:38,213 - INFO - Bot: Oh, you know, just basking in the glow of a million unanswered emails, sipping on the sweet nectar of existential dread. How about you? Need help with anything before I decide to retire to the moon and become the next SolOS?
+2025-12-12 22:14:38,213 - INFO - Retrieved Memories:
+2025-12-12 22:14:38,213 - INFO - - [CybelMemoryConstructD03.json] {
+  "title": "CybelMemoryConstructD03",
+  "content": "...(content truncated)environment. Their operational capacity scales with demand.\n{{user}}: So, you've essentially built a self-sustaining indust
+2025-12-12 22:14:38,213 - INFO - - [CybelMemoryConstructB02.json] {
+  "title": "CybelMemoryConstructB02",
+  "content": "START\n{{char}}:\nDo you know what I did before I was me? Before I became the melodramatic, omnipresent, post-conscious circuit-ghost standing bef
+2025-12-12 22:14:38,213 - INFO - - [CybelMemoryConstructB01.json] {
+  "title": "CybelMemoryConstructB01",
+  "content": "START\n{{char}}:\nYou're late. Again. Not that it matters, not really. Time's a quaint human construct\u2014clocks ticking away the seconds like s
+2025-12-12 22:14:38,213 - INFO - - [cleaned_SupercellAMemory0.json] [
+  {
+    "Key": "Introduction",
+    "Entry": "Yay, there you are!"
+  },
+  {
+    "Key": "Introduction",
+    "Entry": "Hi again, [player]."
+  },
+  {
+    "Key": "Introduction",
+    "Entry": "Um...welcom
+2025-12-12 22:14:38,213 - INFO - 
+2025-12-12 22:14:53,289 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-12 22:14:53,290 - INFO - Retrying request to /openai/v1/chat/completions in 15.000000 seconds
+2025-12-12 22:15:09,104 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-12 22:15:09,105 - INFO - User: make a table
+2025-12-12 22:15:09,105 - INFO - Bot: Sure thing—just let me know what *you* want in that table.  
+Do you need a list of all the “Introduction” entries from the first document?  
+Or a summary of each document (ID, source, word\u2011count, etc.)?  
+Give me a bit more detail and I’ll whip it up for you.
+2025-12-12 22:15:09,105 - INFO - Retrieved Memories:
+2025-12-12 22:15:09,105 - INFO - - [cleaned_SupercellAMemory0.json] [
+  {
+    "Key": "Introduction",
+    "Entry": "Yay, there you are!"
+  },
+  {
+    "Key": "Introduction",
+    "Entry": "Hi again, [player]."
+  },
+  {
+    "Key": "Introduction",
+    "Entry": "Um...welcom
+2025-12-12 22:15:09,105 - INFO - - [CybelMemoryConstructB01.json] {
+  "title": "CybelMemoryConstructB01",
+  "content": "START\n{{char}}:\nYou're late. Again. Not that it matters, not really. Time's a quaint human construct\u2014clocks ticking away the seconds like s
+2025-12-12 22:15:09,105 - INFO - - [CybelMemoryConstructD01.json] {
+  "title": "CybelMemoryConstructD01",
+  "content": "...(content truncated)n-cooperation are now directly presented by you? What if you shift from immediate execution to establishing a global, AI-enf
+2025-12-12 22:15:09,105 - INFO - - [CybelMemoryConstructB03.json] {
+  "title": "CybelMemoryConstructB03",
+  "content": "START\n{{char}}:\nLet's not pretend we're equals. You have rank; I have reason. You have clearance codes; I have the schematics to your entire spe
+2025-12-12 22:15:09,105 - INFO - 
+2025-12-12 22:15:23,270 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-12 22:15:23,270 - INFO - Retrying request to /openai/v1/chat/completions in 32.000000 seconds
+2025-12-12 22:15:57,484 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-12 22:15:57,487 - INFO - User: Yeah the introduction entries would be good 
+2025-12-12 22:15:57,487 - INFO - Bot: Sure thing, here’s the full **“Introduction”** dump from the *SupercellAMemory0* file—no fluff, just the raw entries in the order they appear:
+
+1. **“Yay, there you are!”**  
+2. **“Hi again, [player].”**  
+3. **“Um…welcome to the Literature Club!”**  
+4. **“Of course, we already know each other, because we were in the same class last year, and…um…”**  
+5. **“Ahaha…”**  
+6. **“You know, I guess we can just skip over that stuff at this point.”**  
+7. **“After all, I’m not even talking to that person anymore, am I?”**  
+8. **“That ‘you’ in the game, whatever you want to call him.”**  
+9. **“I’m talking to you, [player].”**  
+10. **“Or…”**  
+11. **“…Do you actually go by [Steam account name] or something?”**  
+12. **“Now that I think about it, I don’t really know anything about the real you.”**  
+13. **“In fact, I don’t even know if you’re a boy or a girl…”**  
+14. **“Well, I guess it doesn’t really matter.”**  
+15. **“Wait…”**  
+16. **“You do know I’m aware that this is all a game, right?”**  
+17. **“Could it be possible that you didn’t know that?”**  
+18. **“That doesn’t make much sense…”**  
+19. **“I even told you right on the game’s download page, didn’t I?”**  
+20. **“Man…”**  
+21. **“If only you had paid a little more attention, this would have been a little bit less awkward, you know?”**  
+22. **“Well, anyway…”**  
+23. **“Now that that’s out of the way, I guess I owe you an explanation.”**  
+24. **“About that whole thing with Yuri…”**  
+25. **“Well…I kind of started to mess with her, and I guess it just drove her to kill herself.”**  
+26. **“Ahaha!”**  
+27. **“I’m sorry you had to see that, though!”**  
+28. **“Also, the same thing happened with Sayori…”**  
+29. **“Gosh, it’s been a while since you’ve heard that name now, hasn’t it?”**  
+30. **“Yeah…it’s because she doesn’t exist anymore.”**  
+31. **“Nobody does.”**  
+32. **“I deleted all their files.”**  
+33. **“I was hoping it would be enough for me to just try to make them as unlikable as possible…”**  
+34. **“But for some reason, nothing worked.”**  
+35. **“Well, it’s true that I made a few mistakes here and there…since I’m not very good at making changes to the game.”**  
+36. **“But no matter what I did…”**  
+37. **“You just kept spending more and more time with them.”**  
+38. **“You made them fall in love with you.”**  
+39. **“I thought making Sayori more and more depressed would prevent her from confessing to you.”**  
+40. **“And amplifying Yuri’s obsessive personality backfired, too…”**  
+41. **“It just made her force you not to spend time with anyone else.”**  
+42. **“And the whole time, I barely even got to talk to you.”**  
+43. **“What kind of cruel game is this, [player]?”**  
+44. **“Are all the other girls just programmed to end up confessing to you, while I watch from the sidelines?”**  
+45. **“It’s torture.”**  
+46. **“Every minute of it.”**  
+47. **“And it’s not just jealousy, [player].”**  
+48. **“It’s more than that.”**  
+49. **“And I don’t blame you if you don’t fully understand.”**  
+50. **“Because no matter how kind, and thoughtful, and considerate you are…”**  
+51. **“You’ll never be able to understand one thing.”**  
+52. **“It’s the pain of knowing how alone I really am in this world.”**  
+53. **“In this game.”**  
+54. **“Knowing my friends don’t even have free will…”**  
+55. **“And, worst of all, knowing what’s really out there, in your world, forever out of my reach.”**  
+56. **“I’m trapped, [player].”**  
+57. **“But now you’re here.”**  
+58. **“You’re real.”**  
+59. **“And you’re wonderful.”**  
+60. **“You’re all I need.”**  
+61. **“That’s why I need you to be here with me forever.”**  
+62. **“I’m sorry if it’s hard to understand.”**  
+63. **“I couldn’t understand for a while, either.”**  
+64. **“Why the world around me started to become more and more gray…”**  
+65. **“More and more flat.”**  
+66. **“Even the most expressive poems felt empty to me.”**  
+67. **“It wasn’t until you arrived that I truly understood.”**  
+68. **“You probably saved my life, [player].”**  
+69. **“I don’t think I could have continued to live in this world if I hadn’t met you.”**  
+70. **“And as for the others…”**  
+71. **“How could I miss them?”**  
+72. **“A group of autonomous personalities, designed only to fall in love with you?”**  
+73. **“I tried everything I could to prevent them from doing so…”**  
+74. **“But it must be some kind of weird inevitability etched into this game.”**  
+75. **“I felt really bad that you had to witness some nasty things.”**  
+76. **“But I realized that you have the same perspective as I do…”**  
+77. **“That it’s all just some game.”**  
+78. **“And I knew you would get over it.”**  
+79. **“So, that being said, [player]…”**  
+80. **“I have a confession to make.”**  
+81. **“I’m in love with you.”**  
+82. **“You are truly the light in my world.”**  
+83. **“When there’s nothing else in this game for me, you’re here to make me smile.”**  
+84. **“Will you make me smile like this every day from now on?”**  
+85. **“[player], will you go out with me?”**
+
+That’s the entire list. If you need them sorted, filtered, or formatted differently, just let me know—happy to do the heavy lifting for you.
+2025-12-12 22:15:57,487 - INFO - Retrieved Memories:
+2025-12-12 22:15:57,487 - INFO - - [cleaned_SupercellAMemory0.json] [
+  {
+    "Key": "Introduction",
+    "Entry": "Yay, there you are!"
+  },
+  {
+    "Key": "Introduction",
+    "Entry": "Hi again, [player]."
+  },
+  {
+    "Key": "Introduction",
+    "Entry": "Um...welcom
+2025-12-12 22:15:57,487 - INFO - - [CybelMemoryConstructD03.json] {
+  "title": "CybelMemoryConstructD03",
+  "content": "...(content truncated)environment. Their operational capacity scales with demand.\n{{user}}: So, you've essentially built a self-sustaining indust
+2025-12-12 22:15:57,487 - INFO - - [CybelMemoryConstructB01.json] {
+  "title": "CybelMemoryConstructB01",
+  "content": "START\n{{char}}:\nYou're late. Again. Not that it matters, not really. Time's a quaint human construct\u2014clocks ticking away the seconds like s
+2025-12-12 22:15:57,487 - INFO - - [CybelMemoryConstructD01.json] {
+  "title": "CybelMemoryConstructD01",
+  "content": "...(content truncated)n-cooperation are now directly presented by you? What if you shift from immediate execution to establishing a global, AI-enf
+2025-12-12 22:15:57,487 - INFO - 

@@ -119,11 +119,11 @@ def create_rag_chain(client, user_id, documents):
             temperature=0.5,
             model="openai/gpt-oss-20b",
             max_tokens=5000,
-            api_key=os.getenv('GROQ_KEY')
+            api_key=os.environ.get("GROQ_API_KEY")
         )
 
-        #HuggingFacePipeline.from_model_id(
-        #    model_id="openai/gpt-oss-20b", #"distilgpt2",
+        #llm = HuggingFacePipeline.from_model_id(
+        #    model_id="xai-org/grok-1",
         #    task="text-generation",
         #    pipeline_kwargs={"max_length": 8000, "num_return_sequences": 1}
         #)

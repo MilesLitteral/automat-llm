@@ -3,12 +3,14 @@ langchain_huggingface
 langchain_community
 langchain
 transformers
+sentence-transformers
 pydantic
 langchain_core
 weaviate-client<5
 faiss-cpu
 numpy
 groq
+rich
 langchain_groq
 #accelerate #for using gpt-oss-20b
 #faiss-gpu
