@@ -16,6 +16,9 @@ langchain_groq
 #faiss-gpu
 #playsound
 
+#For Automat-ImageGen
+diffusers
+
 #For automat-server
 fastapi 
 asyncio
