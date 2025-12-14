@@ -1,5 +1,6 @@
 #For Automat-LLM
-langchain_huggingface
+langchain_huggingface   #for using grok-1
+langchain_groq          #for using gpt-oss-20b
 langchain_community
 langchain
 transformers
@@ -11,16 +12,24 @@ faiss-cpu
 numpy
 groq
 rich
-langchain_groq
-#accelerate #for using gpt-oss-20b
-#faiss-gpu
+
+#For Automat Text-To-Speech (TTS)
+#dia
 #playsound
 
 #For Automat-ImageGen
-diffusers
+diffusers #Debug package for Stable Diffusion model use
+modelscope
+addict 
+datasets==2.12.0
+pyarrow==11.0.0
 
 #For automat-server
 fastapi 
 asyncio
 uvicorn
 uuid
+
+#Misc features for Automat
+#accelerate 
+#faiss-gpu

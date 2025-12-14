@@ -1,6 +1,47 @@
-import torch
-from diffusers import StableDiffusionPipeline
+from modelscope.pipelines import pipeline
 
+class ImageGenerator:
+    def __init__(self, model_id="NewBieAi-lab/NewBie-image-Exp0.1"):
+        self.model_id = model_id
+        self.pipe = None
+
+    def load_model(self):
+        if self.pipe is None:
+            print("Loading Newbie model on CPU...")
+            self.pipe = pipeline(
+                task='text-to-image',
+                model=self.model_id,
+                device='cpu'  # Force CPU
+            )
+            print("Model loaded.")
+
+    def generate_image(self, prompt, output_path="newbie_sample.png", height=1024, width=1024, num_inference_steps=28):
+        if self.pipe is None:
+            self.load_model()
+        try:
+            print(f"Generating image for prompt: '{prompt}'")
+            result = self.pipe(
+                prompt=prompt,
+                height=height,
+                width=width,
+                num_inference_steps=num_inference_steps
+            )
+            image = result['images'][0]
+            image.save(output_path)
+            print(f"Image saved to {output_path}")
+            return output_path
+        except Exception as e:
+            print(f"Error generating image: {e}")
+            return None
+
+# Example usage
+if __name__ == "__main__":
+    generator = ImageGenerator()
+    generator.generate_image("1girl")
+
+#old, uses stable diffusion     
+'''import torch
+from diffusers import StableDiffusionPipeline
 
 class ImageGenerator:
     def __init__(self, model_name="runwayml/stable-diffusion-v1-5"):
@@ -33,4 +74,5 @@ class ImageGenerator:
             return output_path
         except Exception as e:
             print(f"Error generating image: {e}")
-            return None
+            return None'''
+            
