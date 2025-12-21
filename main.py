@@ -13,7 +13,8 @@ from automat_llm.core   import load_json_as_documents, load_personality_file, in
 from automat_llm.config import load_config, save_config, update_config
 from rich.panel    import Panel
 from rich.markdown import Markdown
-from rich.console import Console
+from rich.console  import Console
+from ImageGenModel.generator import ImageGenerator
 
 console     = Console()
 config      = load_config()
@@ -74,7 +75,7 @@ if __name__ == "__main__":
     personality_data  = load_personality_file()
     user_interactions = init_interactions()
     documents         = load_json_as_documents(client, directory)
-
+    generator         = ImageGenerator()
     if not documents:
         print("No documents extracted from JSON files. Please check the file contents.")
         exit()
@@ -110,6 +111,9 @@ if __name__ == "__main__":
             user_input = input("You: ")
             if user_input.lower() == 'quit':
                 print("Goodbye!")
+                break
+            if user_input.__contains__('image'):
+                generator.generate_image(user_input, f"newbie_sample_{len(user_interactions)}")
                 break
             response = generate_response(user_id, user_interactions, user_input, rude_keywords, personality_data, rag_chain)
             #if(args.use_dia):
