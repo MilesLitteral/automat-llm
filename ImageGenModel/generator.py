@@ -1,4 +1,4 @@
-from modelscope.pipelines import pipeline
+from modelscope.pipelines import pipeline #, NewbiePipeline
 
 class ImageGenerator:
     def __init__(self, model_id="NewBieAi-lab/NewBie-image-Exp0.1"):
