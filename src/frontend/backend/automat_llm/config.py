@@ -1,4 +1,7 @@
-import tomllib  # For reading
+try:
+    import tomllib  # Python 3.11+
+except ModuleNotFoundError:
+    import tomli as tomllib  # Fallback for older Python versions
 import tomli_w  # For writing (install via: pip install tomli-w)
 from   pathlib import Path
 
