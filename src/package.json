@@ -22,12 +22,14 @@
     "files": [
       "**/*"
     ],
+
     "win": {
       "target": "nsis",
       "icon": "assets/cybel.ico"
     }
   },
   "dependencies": {
-    "dotenv": "^17.3.1"
+    "dotenv": "^17.3.1",
+    "python-shell": "^5.0.0"
   }
 }
